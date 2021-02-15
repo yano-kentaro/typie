@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
-    <p>{{ message }}</p>
-  </div>
+  <v-app id="app">
+    <div><v-btn color="primary">Button</v-btn></div>
+  </v-app>
 </template>
 
 <script>
