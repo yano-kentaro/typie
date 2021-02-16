@@ -9,6 +9,7 @@ import Vue from 'vue';
 import Vuetify from "vuetify";
 import "vuetify/dist/vuetify.min.css";
 import Landing from '../Landing.vue';
+import Sign_up from '../Sign_up.vue';
 
 Vue.use(Vuetify);
 const vuetify = new Vuetify();

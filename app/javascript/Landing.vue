@@ -9,8 +9,8 @@
         <div class="introduce">
           <div class="introduce-button"><v-btn color="primary" block rounded x-large>HOW TO USE</v-btn></div>
             <div id="login">
-              <div id="sign-up"><v-btn color="green darken-1" rounded x-large dark>新規登録</v-btn></div>
-              <div id="sign-in"><v-btn color="teal lighten-1" rounded x-large dark>ログイン</v-btn></div>
+              <div id="sign-up"><v-btn href="/users/sign_up" color="green darken-1" rounded x-large dark>新規登録</v-btn></div>
+              <div id="sign-in"><v-btn href="/users/sign_in" color="teal lighten-1" rounded x-large dark>ログイン</v-btn></div>
             </div>
         </div>
       </div>
