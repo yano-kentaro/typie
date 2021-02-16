@@ -10,10 +10,13 @@
     "vue": "^2.6.12",
     "vue-loader": "^15.9.6",
     "vue-template-compiler": "^2.6.12",
+    "vue-turbolinks": "^2.2.1",
     "vuetify": "^2.4.4"
   },
   "version": "0.1.0",
   "devDependencies": {
+    "webpack": "4",
+    "webpack-cli": "3",
     "webpack-dev-server": "^3.11.2"
   }
 }
