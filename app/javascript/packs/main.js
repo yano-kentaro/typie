@@ -5,24 +5,24 @@
 // like app/views/layouts/application.html.erb.
 // All it does is render <div>Hello Vue</div> at the bottom of the page.
 
-import Vue from 'vue';
-import Vuetify from "vuetify";
-import "vuetify/dist/vuetify.min.css";
-import Landing from '../Landing.vue';
-import Sign_up from '../Sign_up.vue';
+// import Vue from 'vue';
+// import Vuetify from "vuetify";
+// import "vuetify/dist/vuetify.min.css";
+// import Landing from '../Landing.vue';
+// import Sign_up from '../Sign_up.vue';
 
-Vue.use(Vuetify);
-const vuetify = new Vuetify();
+// Vue.use(Vuetify);
+// const vuetify = new Vuetify();
 
-document.addEventListener('DOMContentLoaded', () => {
-  const landing = new Vue({
-    vuetify,
-    render: h => h(Landing)
-  }).$mount()
-  document.body.appendChild(landing.$el);
+// document.addEventListener('DOMContentLoaded', () => {
+//   const landing = new Vue({
+//     vuetify,
+//     render: h => h(Landing)
+//   }).$mount()
+//   document.body.appendChild(landing.$el);
 
-  console.log(landing);
-})
+//   console.log(landing);
+// })
 
 
 // The above code uses Vue without the compiler, which means you cannot
@@ -39,18 +39,23 @@ document.addEventListener('DOMContentLoaded', () => {
 // </div>
 
 
-// import Vue from 'vue/dist/vue.esm'
-// import App from '../app.vue'
-//
-// document.addEventListener('DOMContentLoaded', () => {
-//   const app = new Vue({
-//     el: '#hello',
-//     data: {
-//       message: "Can you say hello?"
-//     },
-//     components: { App }
-//   })
-// })
+import Vue from 'vue/dist/vue.esm'
+import Vuetify from "vuetify";
+import "vuetify/dist/vuetify.min.css";
+import Landing from '../Landing.vue';
+
+Vue.use(Vuetify);
+const vuetify = new Vuetify();
+
+document.addEventListener('DOMContentLoaded', () => {
+  const landing = new Vue({
+    vuetify,
+    el: '#landing',
+    data: {
+    },
+    components: { Landing }
+  });
+})
 //
 //
 //
