@@ -40,9 +40,11 @@
 
 
 import Vue from 'vue/dist/vue.esm'
+
 import Vuetify from "vuetify";
 import "vuetify/dist/vuetify.min.css";
 import Landing from '../Landing.vue';
+import Books from '../Books.vue';
 
 Vue.use(Vuetify);
 const vuetify = new Vuetify();
@@ -55,6 +57,14 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     components: { Landing }
   });
+  const books = new Vue({
+    vuetify,
+    el: '#books',
+    data: {
+    },
+    components: { Books }
+  });
+
 })
 //
 //
