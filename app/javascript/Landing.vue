@@ -18,8 +18,6 @@
   </v-app>
 </template>
 
-<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
 <script>
 export default {
   
@@ -28,7 +26,7 @@ export default {
 
 <style scoped>
 .bg-img {
-  background-image: url(../assets/images/student-849822.jpg);
+  background-image: url(/student-849822.jpg);
   min-height: 100vh;
   background-size: cover;
   background-position: center;
@@ -40,7 +38,7 @@ export default {
 
 .contents {
   height: 50%;
-  width: 60%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -49,34 +47,36 @@ export default {
 }
 
 .catch-copy {
-  background-image: url(../assets/images/4208448_l.jpg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
-  border-bottom-right-radius: 30px;
-  border-bottom-left-radius: 30px;
   height: 80%;
+  border-radius: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  color : #ffffff;
+  text-shadow: 
+      4px  4px 3px #00007f,
+      -4px  4px 3px #00007f,
+      4px -4px 3px #00007f,
+      -4px -4px 3px #00007f,
+      4px  0px 3px #00007f,
+      0px  4px 3px #00007f,
+      -4px  0px 3px #00007f,
+      0px -4px 3px #00007f;
+  letter-spacing: 5px;
+  font-family: 'PT Sans', sans-serif;
 }
 
 h1 {
-  font-size: 4rem;
-  font-family: serif;
+  font-size: 5rem;
 }
 
 h2 {
-  font-size: 2.5rem;
-  font-family: serif;
+  font-size: 3rem;
 }
 
 .introduce {
-  width: 50%;
+  width: 30%;
   padding-top: 50px;
 }
 

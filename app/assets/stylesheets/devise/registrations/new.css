@@ -1,0 +1,67 @@
+* {
+  box-sizing: border-box;
+}
+
+.bg-img {
+  background-image: url(/student-849822.jpg);
+  min-height: 100vh;
+  min-width: 100vw;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.font {
+  color: white;
+  font-size: 15pt;
+  letter-spacing: 4px;
+  text-shadow: 2px 2px 1px #00007f, -2px 2px 1px #00007f, 2px -2px 1px #00007f,
+    -2px -2px 1px #00007f, 2px 0px 1px #00007f, 0px 2px 1px #00007f,
+    -2px 0px 1px #00007f, 0px -2px 1px #00007f;
+  font-weight: bold;
+}
+
+.title h2 {
+  font-size: 4rem;
+  font-family: "PT Sans", sans-serif;
+  font-weight: bolder;
+}
+
+.field {
+  padding-top: 10px;
+}
+
+.field input {
+  border: 1px #00007f solid;
+  background-color: rgba(0, 0, 255, 0.3);
+  border-radius: 6px;
+  padding: 5px 10px;
+  color: white;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+.actions input[type="submit"] {
+  width: 80%;
+  background-color: #00007f;
+  border-radius: 20px;
+  color: #fff;
+  border: 0;
+  font-size: 18px;
+  padding: 8px 0;
+  margin-top: 20px;
+}
+
+.actions input[type="submit"]:hover {
+  background-color: #0000af;
+}
