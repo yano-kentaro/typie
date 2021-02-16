@@ -8,19 +8,19 @@
 import Vue from 'vue';
 import Vuetify from "vuetify";
 import "vuetify/dist/vuetify.min.css";
-import App from '../app.vue';
+import Landing from '../Landing.vue';
 
 Vue.use(Vuetify);
 const vuetify = new Vuetify();
 
 document.addEventListener('DOMContentLoaded', () => {
-  const app = new Vue({
+  const landing = new Vue({
     vuetify,
-    render: h => h(App)
+    render: h => h(Landing)
   }).$mount()
-  document.body.appendChild(app.$el);
+  document.body.appendChild(landing.$el);
 
-  console.log(app);
+  console.log(landing);
 })
 
 
@@ -65,14 +65,28 @@ document.addEventListener('DOMContentLoaded', () => {
 //
 // Vue.use(TurbolinksAdapter)
 //
+
+
+
+// import TurbolinksAdapter from 'vue-turbolinks'
+// import Vue from 'vue'
+// import Vuetify from "vuetify"
+// import "vuetify/dist/vuetify.min.css"
+// import Landing from '../Landing.vue'
+
+// Vue.use(Vuetify);
+// const vuetify = new Vuetify();
+
+// Vue.use(TurbolinksAdapter)
 // document.addEventListener('turbolinks:load', () => {
-//   const app = new Vue({
-//     el: '#hello',
+//   const landing = new Vue({
+//     vuetify,
+//     el: '#landing',
 //     data: () => {
 //       return {
 //         message: "Can you say hello?"
 //       }
 //     },
-//     components: { App }
+//     components: { Landing }
 //   })
 // })

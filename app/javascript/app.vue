@@ -1,5 +1,6 @@
 <template>
   <v-app id="app">
+    <!-- 念のため残しておく -->
     <div><v-btn color="primary">Button</v-btn></div>
   </v-app>
 </template>
@@ -8,8 +9,9 @@
 export default {
   data: function () {
     return {
-      message: "Hello Vue!"
     }
+  },
+  components: {
   }
 }
 </script>
