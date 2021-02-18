@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   root to: 'landings#index'
 
   namespace :api do
-    resources :books, only: [:index]
+    resources :books, only: [:index, :new, :create]
   end
 end

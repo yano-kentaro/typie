@@ -7,7 +7,7 @@
             <v-card v-ripple class="book" hover color="primary" dark>
               <v-card-title>Book1</v-card-title>
               <v-card-subtitle>Ruby</v-card-subtitle>
-              <v-card-title>20words<br>Score: 1,250</v-card-title>
+              <v-card-title>20words<br>Score: 1,250pt</v-card-title>
             </v-card>
           </v-col>
           <v-col class="col">
