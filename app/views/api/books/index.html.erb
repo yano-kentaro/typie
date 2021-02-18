@@ -1,20 +1,5 @@
 <div id='books'>
-  <div class="header wrapper">
-    <div class="app-title">
-      <%= link_to image_tag("/Typie_logo_2.png"), api_books_path %>
-    </div>
-    <div class="tool-bar">
-      <div class="new-code flex">
-        <div class="tool-bar-button bar-font"><%= button_to "NEW CODE",'#' %></div>
-      </div>
-      <div class="user-name flex bar-font">
-        <%= current_user.nickname %>
-      </div>
-      <div class="log-out flex">
-        <div class="tool-bar-button bar-font"><%= button_to "Log out", destroy_user_session_path, method: :delete %></div>
-      </div>
-    </div>
-  </div>
+  <%= render partial: "layouts/header" %>
   <books />
 
 </div>
