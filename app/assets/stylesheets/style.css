@@ -176,3 +176,32 @@
 .tool-bar-button:hover {
   background-color: rgb(151, 209, 231);
 }
+
+.bg-img-books {
+  background-image: url(/computer-1209641_1920.jpg);
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.container-new-code {
+  height: 75%;
+  width: 60%;
+  background-color: aqua;
+  margin-top: 110px;
+  border-radius: 30px;
+}
+
+.new-code-title {
+}
+
+.new-code-code {
+}
+
+.new-code-tag {
+}
