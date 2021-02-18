@@ -12,5 +12,5 @@ class Color < ActiveHash::Base
   ]
 
   include ActiveHash::Associations
-  has_many :languages
+  has_many :books
 end
