@@ -2,6 +2,7 @@
   <%= render partial: "layouts/header" %>
   <div class="container-new-code flex">
 
+    <%= form_with model: @code, url: '#', local: true do |f| %>
 
     <div class="new-code-title">
       <%= f.label :title %><br />
