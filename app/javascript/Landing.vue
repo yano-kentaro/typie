@@ -26,7 +26,7 @@ export default {
 
 <style scoped>
 .bg-img {
-  background-image: url(/student-849822.jpg);
+  background-image: url(/student-849822_640.jpg);
   min-height: 100vh;
   background-size: cover;
   background-position: center;
