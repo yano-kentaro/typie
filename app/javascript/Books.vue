@@ -192,6 +192,8 @@ export default {
 
 .container {
   height: 75%;
+  background-color: rgba(223, 223, 223, 0.3);
+  margin-top: 50px;
   overflow: scroll;
 }
 
@@ -206,13 +208,11 @@ export default {
 
 .book {
   height: 100%;
-  opacity: .85;
   transition: all .3s ease;
 }
 
 .book:hover {
   transform: scale(1.1, 1.1);
-  opacity: 1;
 }
 
 </style>
