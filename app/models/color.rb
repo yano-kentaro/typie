@@ -12,5 +12,5 @@ class Color < ActiveHash::Base
   ]
 
   include ActiveHash::Associations
-  has_many :tags
+  has_many :languages
 end
