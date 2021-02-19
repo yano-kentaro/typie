@@ -27,13 +27,13 @@
         <div class="font">
           カラー
         </div>
-        <div class="select-box after">
-          <%= f.collection_select(:color, Color.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
+        <div class="select-box font">
+          <%= f.collection_select(:color, Color.all, :id, :name, {}, {class:"select-box"}) %>
         </div>
       </div>
 
-      <div class="field actions">
-        <%= f.submit "Send", class: "submit-btn" %>
+      <div class="field actions new-code-send">
+        <%= f.submit "SEND", class: "submit-btn" %>
       </div>
 
       <% end %>

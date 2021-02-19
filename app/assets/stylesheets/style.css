@@ -59,7 +59,7 @@
   border: 0;
   font-size: 18px;
   padding: 8px 0;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 .actions input[type="submit"]:hover {
@@ -255,7 +255,7 @@
 }
 
 .select-box {
-  height: 50%;
+  height: 60%;
   width: 50%;
   overflow: hidden;
   display: flex;
@@ -270,12 +270,19 @@
   border-radius: 10px;
   background-color: rgba(223, 223, 223, 0.2);
   color: #fff;
-  padding: 5px;
+  text-shadow: 2px 2px 1px #00007f, -2px 2px 1px #00007f, 2px -2px 1px #00007f,
+    -2px -2px 1px #00007f, 2px 0px 1px #00007f, 0px 2px 1px #00007f,
+    -2px 0px 1px #00007f, 0px -2px 1px #00007f;
+  padding: 5px 0 5px 20px;
 }
 
 .new-code-color {
   height: 20%;
   padding: 10px;
+}
+
+.new-code-send {
+  margin-bottom: 30px;
 }
 /* .select-box {
   overflow: hidden;
