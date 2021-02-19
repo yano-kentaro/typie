@@ -1,1 +1,1 @@
-json.array! @books, :title
+json.array! @books, :title, :color_id, :languages

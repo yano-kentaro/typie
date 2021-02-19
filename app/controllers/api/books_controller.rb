@@ -2,7 +2,7 @@ class Api::BooksController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @books = Book.where(user_id: current_user.id).order('created_at DESC')
+    @books = Book.where(user_id: current_user.id).includes(:languages).order("created_at DESC")
   end
 
   def new
