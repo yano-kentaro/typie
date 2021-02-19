@@ -13,7 +13,7 @@ class Api::BooksController < ApplicationController
     @form = Form.new(form_params)
     if @form.valid?
       @form.save
-      redirect_to api_books_path
+      redirect_to pages_path
     else
       render :new
     end
