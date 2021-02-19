@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   namespace :api, format: 'json' do
     resources :books, only: [:index]
   end
+
+  resources :pages, only: [:index]
 end
