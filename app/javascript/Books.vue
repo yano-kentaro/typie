@@ -12,7 +12,7 @@
           </v-col>
           <v-col class="col">
             <v-card class="book">
-              Book2
+              {{title}}
             </v-card>
           </v-col>
           <v-col class="col">
@@ -175,6 +175,22 @@
 import axios from 'axios';
 
 export default {
+  data: function() {
+    return {
+      books: "books"
+    }
+  },
+  mounted() {
+    this.setBook();
+  },
+  methods: {
+    setBook: function() {
+      axios.get('/api/books')
+      .then(response=>(
+        this.books = response.data
+      ))
+    }
+  }
 }
 </script>
 
