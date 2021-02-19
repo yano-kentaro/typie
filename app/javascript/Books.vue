@@ -12,7 +12,7 @@
           </v-col>
           <v-col class="col">
             <v-card class="book">
-              {{title}}
+              Book2
             </v-card>
           </v-col>
           <v-col class="col">
@@ -168,6 +168,11 @@
         </v-row>
       </v-container>
     </div>
+    <ul>
+      <li v-for="book in books" :key="book.id">
+        {{book.title}}
+      </li>
+    </ul>
   </v-app>
 </template>
 
