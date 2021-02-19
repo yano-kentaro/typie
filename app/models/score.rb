@@ -5,5 +5,5 @@ class Score < ApplicationRecord
   belongs_to :user
 
   has_many :book_scores
-  has_many :books, through :book_scores
+  has_many :books, through: :book_scores
 end
