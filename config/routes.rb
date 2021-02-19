@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   root to: 'landings#index'
 
   namespace :api do
-    resources :books, only: [:index, :new, :create]
+    resources :books, only: [:new, :create]
+  end
+
+  namespace :api, format: 'json' do
+    resources :books, only: [:index]
   end
 end
