@@ -1,23 +1,43 @@
 <div class="bg-img-books">
   <%= render partial: "layouts/header" %>
   <div class="container-new-code flex">
-
-    <%= form_with model: @code, url: '#', local: true do |f| %>
-
-    <div class="new-code-title">
-      <%= f.label :title %><br />
-      <%= f.email_field :title, autofocus: true, autocomplete: "off" %>
+    <div class="new-code-eye-catch font">
+      Copy & Paste your source code.
+      <%= form_with model: @form, url: api_books_path, local: true do |f| %>
     </div>
+    <div class='new-code-form'>
 
-    <div class="new-code-code">
-      <%= f.label :code %><br />
-      <%= f.email_field :code, autocomplete: "off" %>
+      <div class="title-language">
+        <div class="new-code-text field font">
+          <%= f.label :title,  "タイトル" %><br>
+          <%= f.text_field :title, class:"input-message", autofocus: true, autocomplete: "off" %>
+        </div>
+        <div class="new-code-text field font">
+          <%= f.label :name, "言語" %><br>
+          <%= f.text_field :name, class:"input-tag", autocomplete: "off" %>
+        </div>
+      </div>
+
+      <div class="new-code-textarea field font">
+        <%= f.label :code,  "コード" %><br>
+        <%= f.text_area :code, class:"input-message" %>
+      </div>
+
+      <div class="new-code-color">
+        <div class="font">
+          カラー
+        </div>
+        <div class="select-box after">
+          <%= f.collection_select(:color, Color.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
+        </div>
+      </div>
+
+      <div class="field actions">
+        <%= f.submit "Send", class: "submit-btn" %>
+      </div>
+
+      <% end %>
+
     </div>
-
-    <div class="new-code-tag">
-      <%= f.label :tag %><br />
-      <%= f.email_field :tag, autocomplete: "off" %>
-    </div>
-
   </div>
 </div>
