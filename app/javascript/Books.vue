@@ -6,8 +6,8 @@
           <v-col class="col" cols="12" md="2.4" lg="2" xl="2" v-for="book in books" :key="book.id">
             <v-card v-ripple class="book" hover color="primary" dark>
               <v-card-title>{{book.title}}</v-card-title>
-              <v-card-subtitle># {{book.languages[0].name}}</v-card-subtitle>
-              <v-card-title>{{`${book.book_words.length}words`}}<br>Score: 1,250pt</v-card-title>
+              <v-card-subtitle># {{book.language}}</v-card-subtitle>
+              <v-card-title>{{`${book.book_words}words`}}<br>Score: 1,250pt</v-card-title>
             </v-card>
           </v-col>
         </v-row>
