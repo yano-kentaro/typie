@@ -6,10 +6,10 @@ class Book < ApplicationRecord
   belongs_to :user
   belongs_to :color
 
-  has_many :book_scores
+  has_many :book_scores, dependent: :destroy
   has_many :scores, through: :book_scores
-  has_many :book_languages
+  has_many :book_languages, dependent: :destroy
   has_many :languages, through: :book_languages
-  has_many :book_words
+  has_many :book_words, dependent: :destroy
   has_many :words, through: :book_words
 end
