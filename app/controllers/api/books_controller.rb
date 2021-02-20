@@ -23,6 +23,12 @@ class Api::BooksController < ApplicationController
     @book = Book.find(params[:id])
   end
 
+  def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+    head :no_content
+  end
+
   private
   def form_params
     params.require(:form).permit(:title, :code, :name, :color).merge(user_id: current_user.id)

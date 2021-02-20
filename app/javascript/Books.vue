@@ -17,6 +17,28 @@
           <v-card-title class="headline primary white--text" primary-title>
             {{showBook.title}} #{{showBook.language}}
           </v-card-title>
+          <v-card-actions>
+            <v-btn color="red" dark @click="toggleDeleteModal(showBook.id)">Delete</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
+      <v-dialog v-model="dialogDeleteFlag" width="400">
+        <v-card>
+          <v-card-title class="headline red dark" primary-title dark>
+            Confirm
+          </v-card-title>
+          <v-spacer></v-spacer>
+          <v-card-text>
+            <p>本当に削除しますか？</p>
+          </v-card-text>
+          <v-divider></v-divider>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="red" dark @click="deleteBook()">
+              Delete
+            </v-btn>
+          </v-card-actions>
         </v-card>
       </v-dialog>
 
@@ -34,6 +56,7 @@ export default {
       indexBooks: "indexBooks",
       dialogShowFlag: false,
       showBook: "showBook",
+      dialogDeleteFlag: false,
     }
   },
   mounted() {
@@ -54,6 +77,18 @@ export default {
       this.id = id
       this.dialogShowFlag = !this.dialogShowFlag
     },
+    deleteBook: function(id) {
+      axios.delete('/api/books/' + this.id)
+      .then(response=> {
+        this.setBook();
+      })
+      this.dialogDeleteFlag = !this.dialogDeleteFlag
+      this.dialogShowFlag = !this.dialogShowFlag
+    },
+    toggleDeleteModal: function(id) {
+      this.id = id
+      this.dialogDeleteFlag = !this.dialogDeleteFlag
+    }
   }
 }
 </script>
