@@ -41,10 +41,14 @@
 
 import Vue from 'vue/dist/vue.esm'
 
+import axios from "axios";
+import VueAxiosPlugin from "./plugins/vue-axios";
 import Vuetify from "vuetify";
 import "vuetify/dist/vuetify.min.css";
 import Landing from '../Landing.vue';
 import Books from '../Books.vue';
+
+Vue.use(VueAxiosPlugin, { axios: axios })
 
 Vue.use(Vuetify);
 const vuetify = new Vuetify();
