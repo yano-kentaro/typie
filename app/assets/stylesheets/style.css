@@ -30,7 +30,7 @@
 
 .title h2 {
   font-size: 4rem;
-  font-family: "PT Sans", sans-serif;
+  font-family: "PT Sans", sans-serif, serif;
   font-weight: bolder;
 }
 
@@ -43,7 +43,13 @@
   background-color: rgba(0, 0, 255, 0.2);
   border-radius: 6px;
   padding: 5px 10px;
-  color: white;
+  color: #0000af;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+.sign-up {
+  height: 100px;
 }
 
 .actions {
@@ -51,6 +57,61 @@
   justify-content: center;
 }
 
+.sign-up input#user_nickname {
+  width: 400px;
+}
+
+.sign-up input#user_email {
+  width: 400px;
+}
+
+.log-in input#user_email {
+  width: 400px;
+}
+
+.sign-up input#user_password {
+  width: 400px;
+}
+
+.log-in input#user_password {
+  width: 400px;
+}
+.sign-up input#user_password_confirmation {
+  width: 400px;
+}
+
+.log-in input#user_password_confirmation {
+  width: 400px;
+}
+.sign-up input:focus {
+  transform: scale(1.1, 1.1);
+  background-color: rgba(223, 223, 223, 0.5);
+}
+
+.log-in input:focus {
+  transform: scale(1.1, 1.1);
+  background-color: rgba(223, 223, 223, 0.5);
+}
+.field input:focus:invalid {
+  border: red 5px solid;
+}
+
+.sign-up input:focus:valid ~ .error .invalid {
+  display: none;
+}
+
+.log-in input:focus:valid ~ .error .invalid {
+  display: none;
+}
+.sign-up input:valid {
+  border: rgb(2, 175, 2) 6px solid;
+  background-color: rgba(223, 223, 223, 0.5);
+}
+
+.log-in input:valid {
+  border: rgb(2, 175, 2) 6px solid;
+  background-color: rgba(223, 223, 223, 0.5);
+}
 .actions input[type="submit"] {
   width: 80%;
   background-color: #00007f;
@@ -59,11 +120,12 @@
   border: 0;
   font-size: 18px;
   padding: 8px 0;
-  /* margin-top: 20px; */
+  transition: all 0.3s ease;
 }
 
 .actions input[type="submit"]:hover {
   background-color: #0000af;
+  transform: scale(1.05, 1.1);
 }
 
 .remember-me {
@@ -74,6 +136,7 @@
   width: 5.5rem;
   height: 2.5rem;
   position: relative;
+  margin-bottom: 30px;
 }
 
 .check-box input[type="checkbox"] {

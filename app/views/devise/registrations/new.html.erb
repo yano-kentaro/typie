@@ -7,24 +7,24 @@
 
     <%= render 'devise/shared/error_messages', model: f.object %>
 
-    <div class="field font">
+    <div class="field font sign-up">
       <%= f.label :nickname %><br />
-      <%= f.text_field :nickname, autofocus: true, autocomplete: "off", required: true %>
+      <%= f.text_field :nickname, autofocus: true, autocomplete: "off", required: true, maxlength: 8, pattern: "^([a-zA-Z0-9]{1,8})$", placeholder: "^([a-zA-Z0-9]{1,8})$" %>
     </div>
 
-    <div class="field font">
+    <div class="field font sign-up">
       <%= f.label :email %><br />
-      <%= f.email_field :email, autocomplete: "off",required: true %>
+      <%= f.email_field :email, autocomplete: "off",required: true, placeholder: '"@"を間に含む半角英数' %>
     </div>
 
-    <div class="field font">
+    <div class="field font sign-up">
       <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "off", required: true %>
+      <%= f.password_field :password, autocomplete: "off", required: true, minlingth: 6, pattern: "^([a-zA-Z0-9]{6,128})$", placeholder: "^([a-zA-Z0-9]{6,128})$" %>
     </div>
 
-    <div class="field font">
+    <div class="field font sign-up">
       <%= f.label :password_confirm %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off", required: true %>
+      <%= f.password_field :password_confirmation, autocomplete: "off", required: true, minlength: 6, pattern: "^([a-zA-Z0-9]{6,128})$", placeholder: "^([a-zA-Z0-9]{6,128})$" %>
     </div>
 
     <div class="field actions">
