@@ -52,10 +52,11 @@
           <v-card-title class="headline primary white--text">Typing Challenge</v-card-title>
           <v-divider></v-divider>
           <v-card-text>{{showBook.title}}</v-card-text>
+          <div v-for="typingWord in typingWords" :key="typingWord.id">{{typingWord.word}}</div>
           <v-card-actions>
             <v-btn color="red" dark @click="toggleTypingModal(showBook.id)">cancel</v-btn>
             <v-spacer></v-spacer>
-            <v-btn color="primary" @click="beginTyping()">start</v-btn>
+            <v-btn color="primary" @click="beginTyping(showBook.id)">start</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -108,6 +109,12 @@ export default {
     toggleDeleteDialog: function(id) {
       this.id = id
       this.dialogDeleteFlag = !this.dialogDeleteFlag
+    },
+    beginTyping: function(id) {
+      axios.get(`/api/books/${this.id}/typing`)
+      .then(response=> {
+        this.typingWords = response.data
+      })
     },
     toggleTypingModal: function(id) {
       this.id = id
