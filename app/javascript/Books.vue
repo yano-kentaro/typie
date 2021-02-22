@@ -23,7 +23,7 @@
             <v-spacer></v-spacer>
             <v-btn color="red" dark @click="toggleDeleteDialog(showBook.id)">Delete</v-btn>
             <v-spacer></v-spacer>
-            <v-btn color="primary" @click="toggleTypingModal(showBook.id)">Typing</v-btn>
+            <v-btn color="primary" @click="toggleTypingDialog(showBook.id)">Typing</v-btn>
             <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
@@ -49,19 +49,39 @@
         </v-card>
       </v-dialog>
 
-      <v-dialog v-model="modalTypingFlag" width="500">
+      <v-dialog v-model="dialogTypingFlag" width="500">
         <v-card>
           <v-card-title class="headline primary white--text">Typing Challenge</v-card-title>
           <v-divider></v-divider>
           <v-card-text>{{showBook.title}}</v-card-text>
-          <div v-for="typingWord in typingWords" :key="typingWord.id">{{typingWord.word}}</div>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="red" dark @click="toggleTypingModal(showBook.id)">cancel</v-btn>
+            <v-btn color="red" dark @click="toggleTypingDialog(showBook.id)">cancel</v-btn>
             <v-spacer></v-spacer>
             <v-btn color="primary" @click="beginTyping(showBook.id)">start</v-btn>
             <v-spacer></v-spacer>
           </v-card-actions>
+        </v-card>
+      </v-dialog>
+
+      <v-dialog v-model="dialogCountDownFlag" width="800">
+      <circular-count-down-timer style="text-align: center; color: seagreen; overflow: auto; height: 85vh;"
+        :initial-value="5"
+        :steps="5"
+        :size="500"
+        :stroke-width="20"
+        :seconds-stroke-color="'gray'"
+        :underneath-stroke-color="'rgb(2, 175, 2)'"
+        :seconds-fill-color="'lightgreen'"
+        :second-label="'Ready?'"
+        @finish="finished"
+      ></circular-count-down-timer>
+      </v-dialog>
+
+      <v-dialog v-model="modalTypingFlag" width="1200" persistent>
+        <v-card>
+          <v-card-text v-for="typingWord in typingWords" :key="typingWord.id">{{typingWord.word}}</v-card-text>
+          <v-text-field autofocus clearable ></v-text-field>
         </v-card>
       </v-dialog>
 
@@ -81,7 +101,10 @@ export default {
       showBook: "showBook",
       dialogDeleteFlag: false,
       typingWords: "typingWords",
+      dialogTypingFlag: false,
+      dialogCountDownFlag: false,
       modalTypingFlag: false,
+      typing: "",
     }
   },
   mounted() {
@@ -115,17 +138,24 @@ export default {
       this.dialogDeleteFlag = !this.dialogDeleteFlag
       this.dialogShowFlag = !this.dialogShowFlag
     },
+    toggleTypingDialog: function(id) {
+      this.id = id
+      this.dialogTypingFlag = !this.dialogTypingFlag
+      this.dialogShowFlag = !this.dialogShowFlag
+    },
     beginTyping: function(id) {
       axios.get(`/api/books/${this.id}/typing`)
       .then(response=> {
         this.typingWords = response.data
-      })
-    },
-    toggleTypingModal: function(id) {
+      });
       this.id = id
-      this.modalTypingFlag = !this.modalTypingFlag
-      this.dialogShowFlag = !this.dialogShowFlag
+      this.dialogTypingFlag = !this.dialogTypingFlag
+      this.dialogCountDownFlag = !this.dialogCountDownFlag
     },
+    finished: function() {
+      this.dialogCountDownFlag = !this.dialogCountDownFlag
+      this.modalTypingFlag = ! this.modalTypingFlag
+    }
   }
 }
 
@@ -174,6 +204,10 @@ button {
 
 button:hover {
   transform: scale(1.15, 1.15);
+}
+
+#wrapper {
+  background-color: rgb(189, 255, 198);
 }
 
 </style>

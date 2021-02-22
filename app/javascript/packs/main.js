@@ -45,6 +45,7 @@ import axios from "axios";
 import VueAxiosPlugin from "./plugins/vue-axios";
 import Vuetify from "vuetify";
 import "vuetify/dist/vuetify.min.css";
+import CircularCountDownTimer from "vue-circular-count-down-timer";
 import Landing from '../Landing.vue';
 import Books from '../Books.vue';
 
@@ -52,6 +53,8 @@ Vue.use(VueAxiosPlugin, { axios: axios })
 
 Vue.use(Vuetify);
 const vuetify = new Vuetify();
+
+Vue.use(CircularCountDownTimer);
 
 document.addEventListener('DOMContentLoaded', () => {
   const landing = new Vue({
