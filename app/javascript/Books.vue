@@ -25,7 +25,7 @@
 
       <v-dialog v-model="dialogDeleteFlag" width="400">
         <v-card>
-          <v-card-title class="headline red dark" primary-title dark>
+          <v-card-title class="headline red white--text" primary-title>
             Confirm
           </v-card-title>
           <v-spacer></v-spacer>
@@ -34,7 +34,6 @@
           </v-card-text>
           <v-divider></v-divider>
           <v-card-actions>
-            <v-spacer></v-spacer>
             <v-btn color="red" dark @click="deleteBook()">
               Delete
             </v-btn>
