@@ -29,6 +29,10 @@ class Api::BooksController < ApplicationController
     head :no_content
   end
 
+  def typing
+    @words = BookWord.includes(:word).where(book_id: params[:id]).order("RAND()")
+  end
+
   private
   def form_params
     params.require(:form).permit(:title, :code, :name, :color).merge(user_id: current_user.id)
