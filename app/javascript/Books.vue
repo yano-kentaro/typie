@@ -34,15 +34,17 @@
           <v-card-title class="headline red white--text" primary-title>
             Confirm
           </v-card-title>
-          <v-spacer></v-spacer>
+          <v-divider></v-divider>
           <v-card-text>
             <p>本当に削除しますか？</p>
           </v-card-text>
           <v-divider></v-divider>
           <v-card-actions>
+            <v-spacer></v-spacer>
             <v-btn color="red" dark @click="toggleDeleteDialog(showBook.id)">cancel</v-btn>
             <v-spacer></v-spacer>
             <v-btn color="red" dark @click="deleteBook(showBook.id)">Delete</v-btn>
+            <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -54,9 +56,11 @@
           <v-card-text>{{showBook.title}}</v-card-text>
           <div v-for="typingWord in typingWords" :key="typingWord.id">{{typingWord.word}}</div>
           <v-card-actions>
+            <v-spacer></v-spacer>
             <v-btn color="red" dark @click="toggleTypingModal(showBook.id)">cancel</v-btn>
             <v-spacer></v-spacer>
             <v-btn color="primary" @click="beginTyping(showBook.id)">start</v-btn>
+            <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
       </v-dialog>
