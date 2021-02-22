@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   end
 
   namespace :api, format: 'json' do
-    resources :books, only: [:index, :show, :destroy]
+    resources :books, only: [:index, :show, :destroy] do
+      get 'typing', :on => :member
+    end
   end
 
   resources :pages, only: [:index]
