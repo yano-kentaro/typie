@@ -78,10 +78,10 @@
       ></circular-count-down-timer>
       </v-dialog>
 
-      <v-dialog v-model="modalTypingFlag" width="1200" persistent>
-        <v-card>
-          <v-card-text v-for="typingWord in typingWords" :key="typingWord.id">{{typingWord.word}}</v-card-text>
-          <v-text-field autofocus clearable ></v-text-field>
+      <v-dialog v-model="modalTypingFlag" width="500" persistent>
+        <v-card style="font-family: Source Han Code JP; height: 25vh; overflow: auto;">
+          <v-card-text style="font-size: 30px; padding-top: 30px;">controller</v-card-text>
+          <v-text-field id="input" autofocus height="40px" style="height: 50px; font-size: 30px;"></v-text-field>
         </v-card>
       </v-dialog>
 
@@ -103,7 +103,7 @@ export default {
       typingWords: "typingWords",
       dialogTypingFlag: false,
       dialogCountDownFlag: false,
-      modalTypingFlag: false,
+      modalTypingFlag: true,
       typing: "",
     }
   },
@@ -210,4 +210,7 @@ button:hover {
   background-color: rgb(189, 255, 198);
 }
 
+.v-input {
+  padding: 0 25px;
+}
 </style>
