@@ -49,7 +49,7 @@
         </v-card>
       </v-dialog>
 
-      <v-dialog v-model="modalTypingFlag" width="1000" persistent>
+      <v-dialog v-model="modalTypingFlag" width="500">
         <v-card>
           <v-card-title class="headline primary white--text">Typing Challenge</v-card-title>
           <v-divider></v-divider>
@@ -113,6 +113,7 @@ export default {
     toggleDeleteDialog: function(id) {
       this.id = id
       this.dialogDeleteFlag = !this.dialogDeleteFlag
+      this.dialogShowFlag = !this.dialogShowFlag
     },
     beginTyping: function(id) {
       axios.get(`/api/books/${this.id}/typing`)
@@ -127,10 +128,6 @@ export default {
     },
   }
 }
-      // axios.typing('/api/books/' + this.id)
-      // .then(response=> {
-      //   this.typingWords = response.data
-      // });
 
 </script>
 
