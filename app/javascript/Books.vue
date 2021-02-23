@@ -64,7 +64,10 @@
         </v-card>
       </v-dialog>
 
-      <v-dialog v-model="dialogCountDownFlag" width="800">
+      <v-dialog v-model="dialogCountDownFlag" width="400">
+        <v-card>
+          <v-progress-circular :size="400" width="30" color="primary" indeterminate style="font-size: 200px;">{{countDown}}</v-progress-circular>
+        </v-card>
       </v-dialog>
 
       <v-dialog v-model="modalTypingFlag" width="500" persistent>
@@ -79,7 +82,6 @@
           <v-card-title>Result</v-card-title>
           <v-card-text>{{correctCount}}文字正解</v-card-text>
           <v-card-text>{{missCount}}文字ミス</v-card-text>
-          <v-btn @click="updateCountdown">Try again</v-btn>
         </v-card>
       </v-dialog>
 
@@ -101,6 +103,7 @@ export default {
       typingWords: "typingWords",
       dialogTypingFlag: false,
       dialogCountDownFlag: false,
+      countDown: 0,
       modalTypingFlag: false,
       displayWord: "",
       inputField: "",
@@ -154,6 +157,21 @@ export default {
       this.id = id
       this.dialogTypingFlag = !this.dialogTypingFlag
       this.dialogCountDownFlag = !this.dialogCountDownFlag
+      this.setCountDown();
+    },
+    setCountDown: function() {
+      const sec = 3;
+      let dt = new Date();
+      let endDt = new Date(dt.getTime() + sec *1000);
+      this.countDown = sec;
+      const time = setInterval(()=> {
+        this.countDown --;
+        dt = new Date();
+        if(dt.getTime() >= endDt.getTime()){
+          clearInterval(time);
+          this.countFinished();
+        }
+      }, 1000);
     },
     countFinished: function() {
       this.dialogCountDownFlag = !this.dialogCountDownFlag
