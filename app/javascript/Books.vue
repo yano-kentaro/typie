@@ -65,23 +65,21 @@
       </v-dialog>
 
       <v-dialog v-model="dialogCountDownFlag" width="800">
-      <circular-count-down-timer style="text-align: center; color: seagreen; overflow: auto; height: 85vh;"
-        :initial-value="5"
-        :steps="5"
-        :size="500"
-        :stroke-width="20"
-        :seconds-stroke-color="'gray'"
-        :underneath-stroke-color="'rgb(2, 175, 2)'"
-        :seconds-fill-color="'lightgreen'"
-        :second-label="'Ready?'"
-        @finish="finished"
-      ></circular-count-down-timer>
       </v-dialog>
 
-      <v-dialog v-model="modalTypingFlag" width="1200" persistent>
+      <v-dialog v-model="modalTypingFlag" width="500" persistent>
+        <v-card style="font-family: Source Han Code JP; height: 25vh; overflow: auto;">
+          <v-card-text style="font-size: 30px; padding-top: 30px;">{{displayWord}}</v-card-text>
+          <v-text-field autofocus v-model="inputField" @keydown="judgeTyping" @keyup="nextWord" height="40px" style="height: 50px; font-size: 30px;"></v-text-field>
+        </v-card>
+      </v-dialog>
+
+      <v-dialog v-model="dialogResultFlag" width="500">
         <v-card>
-          <v-card-text v-for="typingWord in typingWords" :key="typingWord.id">{{typingWord.word}}</v-card-text>
-          <v-text-field autofocus clearable ></v-text-field>
+          <v-card-title>Result</v-card-title>
+          <v-card-text>{{correctCount}}文字正解</v-card-text>
+          <v-card-text>{{missCount}}文字ミス</v-card-text>
+          <v-btn @click="updateCountdown">Try again</v-btn>
         </v-card>
       </v-dialog>
 
@@ -104,7 +102,12 @@ export default {
       dialogTypingFlag: false,
       dialogCountDownFlag: false,
       modalTypingFlag: false,
-      typing: "",
+      displayWord: "",
+      inputField: "",
+      charIndex: 0,
+      correctCount: 0,
+      missCount: 0,
+      dialogResultFlag: false,
     }
   },
   mounted() {
@@ -152,10 +155,42 @@ export default {
       this.dialogTypingFlag = !this.dialogTypingFlag
       this.dialogCountDownFlag = !this.dialogCountDownFlag
     },
-    finished: function() {
+    countFinished: function() {
       this.dialogCountDownFlag = !this.dialogCountDownFlag
-      this.modalTypingFlag = ! this.modalTypingFlag
-    }
+      this.modalTypingFlag = !this.modalTypingFlag
+      this.correctCount = 0
+      this.missCount = 0
+      this.initTyping();
+    },
+    initTyping: function() {
+      this.inputField = ""
+      this.displayWord = this.typingWords.shift().word
+    },
+    judgeTyping: function(event) {
+      console.log(event.key);
+      if(this.displayWord.charAt(this.charIndex) == event.key) {
+        console.log(`this.displayWord.length=${this.displayWord.length}`)
+        console.log(`this.charIndex=${this.charIndex}`)
+        console.log(`this.correctCount=${this.correctCount}`)
+        this.charIndex ++;
+        this.correctCount ++;
+      } else if(event.key == "Backspace") {
+        this.missCount ++;
+        console.log(`miss:${this.missCount}`)
+      } 
+    },
+    nextWord: function(event) {
+      if(this.typingWords.length == 0){
+        this.finishTyping();
+      }else if(this.displayWord.length == this.charIndex) {
+          this.initTyping();
+          this.charIndex = 0
+      }
+    },
+    finishTyping: function() {
+      this.modalTypingFlag = !this.modalTypingFlag
+      this.dialogResultFlag = !this.dialogResultFlag
+    },
   }
 }
 
@@ -210,4 +245,7 @@ button:hover {
   background-color: rgb(189, 255, 198);
 }
 
+.v-input {
+  padding: 0 25px;
+}
 </style>
