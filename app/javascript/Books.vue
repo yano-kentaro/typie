@@ -73,7 +73,7 @@
       <v-dialog v-model="modalTypingFlag" width="500" persistent>
         <v-card style="font-family: Source Han Code JP; height: 25vh; overflow: auto;">
           <v-card-text style="font-size: 30px; padding-top: 30px;">{{displayWord}}</v-card-text>
-          <v-text-field autofocus v-model="inputField" @keydown="judgeTyping" @keyup="nextWord" height="40px" style="height: 50px; font-size: 30px;"></v-text-field>
+          <v-text-field autofocus autocomplete="off" v-model="inputField" @keydown="judgeTyping" @keyup="nextWord" height="40px" style="height: 50px; font-size: 30px;"></v-text-field>
         </v-card>
       </v-dialog>
 
@@ -82,6 +82,9 @@
           <v-card-title>Result</v-card-title>
           <v-card-text>{{correctCount}}文字正解</v-card-text>
           <v-card-text>{{missCount}}文字ミス</v-card-text>
+          <v-card-text>{{typingTime}}秒</v-card-text>
+          <v-card-text>正答率:{{correctRate * 100}}%</v-card-text>
+          <v-card-text>スコア:{{typingScore}}points</v-card-text>
         </v-card>
       </v-dialog>
 
@@ -111,6 +114,11 @@ export default {
       correctCount: 0,
       missCount: 0,
       dialogResultFlag: false,
+      startTime: 0,
+      finishTime: 0,
+      typingTime: 0,
+      correctRate: 0,
+      typingScore: 0,
     }
   },
   mounted() {
@@ -174,40 +182,41 @@ export default {
       }, 1000);
     },
     countFinished: function() {
-      this.dialogCountDownFlag = !this.dialogCountDownFlag
-      this.modalTypingFlag = !this.modalTypingFlag
-      this.correctCount = 0
-      this.missCount = 0
+      this.dialogCountDownFlag = !this.dialogCountDownFlag;
+      this.modalTypingFlag = !this.modalTypingFlag;
+      this.correctCount = 0;
+      this.missCount = 0;
+      this.charIndex = 0;
+      this.startTime = performance.now();
       this.initTyping();
     },
     initTyping: function() {
-      this.inputField = ""
-      this.displayWord = this.typingWords.shift().word
+      this.inputField = "";
+      this.displayWord = this.typingWords.shift().word;
     },
     judgeTyping: function(event) {
-      console.log(event.key);
       if(this.displayWord.charAt(this.charIndex) == event.key) {
-        console.log(`this.displayWord.length=${this.displayWord.length}`)
-        console.log(`this.charIndex=${this.charIndex}`)
-        console.log(`this.correctCount=${this.correctCount}`)
         this.charIndex ++;
         this.correctCount ++;
       } else if(event.key == "Backspace") {
         this.missCount ++;
-        console.log(`miss:${this.missCount}`)
       } 
     },
     nextWord: function(event) {
-      if(this.typingWords.length == 0){
+      if(this.typingWords == 0 && this.displayWord.length == this.charIndex){
         this.finishTyping();
       }else if(this.displayWord.length == this.charIndex) {
-          this.initTyping();
           this.charIndex = 0
+          this.initTyping();
       }
     },
     finishTyping: function() {
       this.modalTypingFlag = !this.modalTypingFlag
       this.dialogResultFlag = !this.dialogResultFlag
+      this.finishTime = performance.now();
+      this.typingTime = ( (this.finishTime - this.startTime) / 1000 ).toFixed(2)
+      this.correctRate = (this.correctCount - this.missCount) / this.correctCount
+      this.typingScore = Math.round(this.correctCount * 60 / this.typingTime * Math.pow(this.correctRate, 2));
     },
   }
 }
