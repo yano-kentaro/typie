@@ -10,7 +10,6 @@ class Api::BooksController < ApplicationController
   end
 
   def create
-    binding.pry
     @form = Form.new(form_params)
     if @form.valid?
       @form.save
@@ -45,6 +44,6 @@ class Api::BooksController < ApplicationController
   end
 
   def score_params
-    params.require(:typing_score)
+    params.require(:typing_score).permit(:typing_score, :typing_time, :book_id)
   end
 end
