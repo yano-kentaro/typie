@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   namespace :api, format: 'json' do
     resources :books, only: [:index, :show, :destroy] do
       get 'typing', :on => :member
+      post 'score', :on => :member
     end
   end
 
