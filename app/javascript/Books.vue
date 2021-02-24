@@ -187,7 +187,6 @@ export default {
         this.setBook();
       });
       this.dialogDeleteFlag = !this.dialogDeleteFlag
-      this.dialogShowFlag = !this.dialogShowFlag
     },
     toggleDeleteDialog: function(id) {
       this.id = id
