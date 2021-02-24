@@ -113,9 +113,18 @@
       </v-dialog>
 
       <v-dialog v-model="modalTypingFlag" width="500" persistent>
-        <v-card style="font-family: Source Han Code JP; height: 25vh; overflow: auto;">
+        <v-card style="font-family: Source Han Code JP; height: 30vh; overflow: auto;">
           <v-card-text style="font-size: 30px; padding-top: 30px;">{{displayWord}}</v-card-text>
           <v-text-field autofocus autocomplete="off" v-model="inputField" @keydown="judgeTyping" @keyup="nextWord" height="40px" style="height: 50px; font-size: 30px;"></v-text-field>
+          <v-card-actions style="display: flex; justify-content: center;">
+            <v-btn width="200" rounded color="orange" dark @click="finishTyping()">
+              <v-spacer></v-spacer>
+              <v-icon style="transform: scale(-1, 1);">mdi-exit-run</v-icon>
+              <v-spacer></v-spacer>Exit<v-spacer></v-spacer>
+              <v-icon>mdi-exit-run</v-icon>
+              <v-spacer></v-spacer>
+            </v-btn>
+          </v-card-actions>
         </v-card>
       </v-dialog>
 
@@ -257,7 +266,7 @@ export default {
       this.finishTime = performance.now();
       this.typingTime = ( (this.finishTime - this.startTime) / 1000 ).toFixed(2)
       this.correctRate = ( (this.correctCount - this.missCount) / this.correctCount ).toFixed(4)
-      this.typingScore =(this.correctCount * 60 / this.typingTime * Math.pow(this.correctRate, 2)).toFixed(0);
+      this.typingScore = (this.correctCount * 60 / this.typingTime * Math.pow(this.correctRate, 2)).toFixed(0);
       axios.post(`/api/books/${this.id}/score`,{typing_score: {typing_score: this.typingScore, typing_time: this.typingTime, book_id: this.showBook.id}})
       .then(response=> {
         this.setBook();
