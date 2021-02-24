@@ -2,8 +2,8 @@
   <v-app id="books">
     <div class="bg-img-books">
       <v-container class="container">
-        <v-row class="row">
-          <v-col class="col" cols="12" md="2.4" lg="2" xl="2" v-for="indexBook in indexBooks" :key="indexBook.id">
+        <v-row class="row" cols="12">
+          <v-col class="col" md="2.4" lg="2" xl="2" v-for="indexBook in indexBooks" :key="indexBook.id">
             <v-card v-ripple class="book" hover color="primary" dark @click='toggleShowDialog(indexBook.id)'>
               <v-card-title>{{indexBook.title}}</v-card-title>
               <v-card-subtitle># {{indexBook.language}}</v-card-subtitle>
@@ -12,19 +12,50 @@
           </v-col>
         </v-row>
 
-      <v-dialog v-model="dialogShowFlag" width="600">
+      <v-dialog v-model="dialogShowFlag" width="500">
         <v-card>
           <v-card-title class="headline primary white--text" primary-title>
-            {{showBook.title}} #{{showBook.language}}
+            {{showBook.title}}
           </v-card-title>
-          <v-card-test v-for="(score, index) in showBook.score" :key="index"><p>{{index + 1}}: {{score}}pt</p></v-card-test>
+          <v-card-subtitle class="primary white--text" style="height: 30px;">
+            #{{showBook.language}}
+          </v-card-subtitle>
+          <v-card-text>
+            <v-row class="row">
+              <v-col class="col" md="6" lg="6" xl="6">
+              <v-card-test v-for="(score, index) in showBook.score" :key="index" style="text-align: end;">
+                <p style="font-size: 25px; line-height: 22px; font-famiry: serif; font-weight: bold; margin-top: 16px;">{{index + 1}} : {{score}} pt</p>
+              </v-card-test>
+              </v-col>
+              <v-col class="col" md="6" lg="6" xl="6">
+              <v-card-test v-for="(time) in showBook.time" :key="time.index">
+                <p style="font-size: 25px; line-height: 22px; font-famiry: serif; font-weight: bold; margin-top: 16px;">: {{time}} s</p>
+              </v-card-test>
+              </v-col>
+            </v-row>
+          </v-card-text>
+          <v-divider></v-divider>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="red" dark @click="toggleShowDialog(showBook.id)">cancel</v-btn>
+            <v-btn width="415" rounded  color="primary" @click="toggleTypingDialog(showBook.id)">
+              Typing<v-icon>mdi-keyboard-outline</v-icon>
+            </v-btn>
             <v-spacer></v-spacer>
-            <v-btn color="red" dark @click="toggleDeleteDialog(showBook.id)">Delete</v-btn>
+          </v-card-actions>
+          <v-divider></v-divider>
+          <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" @click="toggleTypingDialog(showBook.id)">Typing</v-btn>
+            <v-btn width="120" rounded color="orange" dark @click="toggleShowDialog(showBook.id)">
+              cancel<v-icon>mdi-cancel</v-icon>
+              </v-btn>
+            <v-spacer></v-spacer>
+            <v-btn width="120" rounded color="success">
+              edit<v-icon>mdi-square-edit-outline</v-icon>
+            </v-btn>
+            <v-spacer></v-spacer>
+            <v-btn width="120" rounded color="error" dark @click="toggleDeleteDialog(showBook.id)">
+              Delete <v-icon>mdi-delete-circle-outline</v-icon>
+              </v-btn>
             <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
