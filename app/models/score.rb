@@ -1,5 +1,5 @@
 class Score < ApplicationRecord
-  validates :typing_score, presence: true, numericality: true
+  validates :typing_score, presence: true
   validates :typing_time, presence: true
 
   has_many :book_scores
