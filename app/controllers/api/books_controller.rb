@@ -10,6 +10,7 @@ class Api::BooksController < ApplicationController
   end
 
   def create
+    binding.pry
     @form = Form.new(form_params)
     if @form.valid?
       @form.save
@@ -34,12 +35,16 @@ class Api::BooksController < ApplicationController
   end
 
   def score
-    typing_score = TypingScore.new
+    typing_score = TypingScore.new(score_params)
     typing_score.save
   end
 
   private
   def form_params
     params.require(:form).permit(:title, :code, :name, :color).merge(user_id: current_user.id)
+  end
+
+  def score_params
+    params.require(:typing_score)
   end
 end

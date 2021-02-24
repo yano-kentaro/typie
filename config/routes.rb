@@ -3,13 +3,14 @@ Rails.application.routes.draw do
   root to: 'landings#index'
 
   namespace :api do
-    resources :books, only: [:new, :create]
+    resources :books, only: [:new, :create] do
+      post 'score', :on => :member
+    end
   end
 
   namespace :api, format: 'json' do
     resources :books, only: [:index, :show, :destroy] do
       get 'typing', :on => :member
-      post 'score', :on => :member
     end
   end
 

@@ -57,10 +57,8 @@ ActiveRecord::Schema.define(version: 2021_02_18_094108) do
   create_table "scores", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "typing_score", null: false
     t.time "typing_time", null: false
-    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_scores_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -89,5 +87,4 @@ ActiveRecord::Schema.define(version: 2021_02_18_094108) do
   add_foreign_key "book_words", "books"
   add_foreign_key "book_words", "words"
   add_foreign_key "books", "users"
-  add_foreign_key "scores", "users"
 end
