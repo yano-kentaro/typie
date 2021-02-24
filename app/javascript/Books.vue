@@ -23,14 +23,20 @@
           <v-card-text>
             <v-row class="row">
               <v-col class="col" md="6" lg="6" xl="6">
-              <v-card-test v-for="(score, index) in showBook.score" :key="index" style="text-align: end;">
-                <p style="font-size: 25px; line-height: 22px; font-famiry: serif; font-weight: bold; margin-top: 16px;">{{index + 1}} : {{score}} pt</p>
-              </v-card-test>
+              <v-card-text 
+              v-for="(score, index) in showBook.score"
+              :key="index"
+              style="text-align: end; height: 35px; font-size: 25px; font-famiry: serif; font-weight: bold;"
+              > {{index + 1}} : {{score}} pt
+              </v-card-text>
               </v-col>
               <v-col class="col" md="6" lg="6" xl="6">
-              <v-card-test v-for="(time) in showBook.time" :key="time.index">
-                <p style="font-size: 25px; line-height: 22px; font-famiry: serif; font-weight: bold; margin-top: 16px;">: {{time}} s</p>
-              </v-card-test>
+              <v-card-text 
+              v-for="(time) in showBook.time"
+              :key="time.index"
+              style="height: 35px; font-size: 25px; font-famiry: serif; font-weight: bold;"
+              >: {{time}} s
+              </v-card-text>
               </v-col>
             </v-row>
           </v-card-text>
@@ -49,12 +55,8 @@
               cancel<v-icon>mdi-cancel</v-icon>
               </v-btn>
             <v-spacer></v-spacer>
-            <v-btn width="120" rounded color="success">
-              edit<v-icon>mdi-square-edit-outline</v-icon>
-            </v-btn>
-            <v-spacer></v-spacer>
             <v-btn width="120" rounded color="error" dark @click="toggleDeleteDialog(showBook.id)">
-              Delete <v-icon>mdi-delete-circle-outline</v-icon>
+              Delete<v-icon>mdi-delete-circle-outline</v-icon>
               </v-btn>
             <v-spacer></v-spacer>
           </v-card-actions>
@@ -63,19 +65,23 @@
 
       <v-dialog v-model="dialogDeleteFlag" width="400">
         <v-card>
-          <v-card-title class="headline red white--text" primary-title>
+          <v-card-title class="headline error white--text" primary-title>
             Confirm
           </v-card-title>
           <v-divider></v-divider>
-          <v-card-text>
-            <p>本当に削除しますか？</p>
+          <v-card-text style="margin-top: 30px;">
+            <p style="text-align: center; font-size: 20px; font-weight: bold;">本当に削除しますか？</p>
           </v-card-text>
           <v-divider></v-divider>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="red" dark @click="toggleDeleteDialog(showBook.id)">cancel</v-btn>
+            <v-btn width="120" rounded color="orange" dark @click="toggleDeleteDialog(showBook.id)">
+              cancel<v-icon>mdi-cancel</v-icon>
+            </v-btn>
             <v-spacer></v-spacer>
-            <v-btn color="red" dark @click="deleteBook(showBook.id)">Delete</v-btn>
+            <v-btn width="120" rounded color="error" dark @click="deleteBook(showBook.id)">
+              Delete<v-icon>mdi-delete-circle-outline</v-icon>
+            </v-btn>
             <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
@@ -88,9 +94,13 @@
           <v-card-text>{{showBook.title}}</v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="red" dark @click="toggleTypingDialog(showBook.id)">cancel</v-btn>
+            <v-btn width="120" rounded color="orange" dark @click="toggleTypingDialog(showBook.id)">
+              cancel<v-icon>mdi-cancel</v-icon>
+            </v-btn>
             <v-spacer></v-spacer>
-            <v-btn color="primary" @click="beginTyping(showBook.id)">start</v-btn>
+            <v-btn width="120" rounded color="primary" @click="beginTyping(showBook.id)">
+              start<v-icon>mdi-keyboard-outline</v-icon>
+            </v-btn>
             <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
@@ -172,7 +182,7 @@ export default {
       this.dialogShowFlag = !this.dialogShowFlag
     },
     deleteBook: function(id) {
-      axios.delete('/api/books/' + this.id)
+      axios.delete(`/api/books/${this.id}`)
       .then(response=> {
         this.setBook();
       });
