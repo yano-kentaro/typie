@@ -91,7 +91,8 @@
         <v-card>
           <v-card-title class="headline primary white--text">Typing Challenge</v-card-title>
           <v-divider></v-divider>
-          <v-card-text>{{showBook.title}}</v-card-text>
+          <v-card-text style="font-weight: bold; font-size: 35px; text-align: center; margin-top: 20px; letter-spacing: 3px; font-family: sans-serif, serif;">Are You Ready?</v-card-text>
+          <v-divider></v-divider>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn width="120" rounded color="orange" dark @click="toggleTypingDialog(showBook.id)">
@@ -115,7 +116,11 @@
       <v-dialog v-model="modalTypingFlag" width="500" persistent>
         <v-card style="font-family: Source Han Code JP; height: 30vh; overflow: auto;">
           <v-card-text style="font-size: 30px; padding-top: 30px;">{{displayWord}}</v-card-text>
-          <v-text-field autofocus autocomplete="off" v-model="inputField" @keydown="judgeTyping" @keyup="nextWord" height="40px" style="height: 50px; font-size: 30px;"></v-text-field>
+          <v-text-field autofocus autocomplete="off"
+          v-model="inputField"
+          @keydown="judgeTyping"
+          @keyup="nextWord"
+          height="40px" style="height: 50px; font-size: 30px;"></v-text-field>
           <v-card-actions style="display: flex; justify-content: center;">
             <v-btn width="200" rounded color="orange" dark @click="finishTyping()">
               <v-spacer></v-spacer>
