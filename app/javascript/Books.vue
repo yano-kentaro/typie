@@ -106,7 +106,7 @@
         </v-card>
       </v-dialog>
 
-      <v-dialog v-model="dialogCountDownFlag" width="400">
+      <v-dialog v-model="modalCountDownFlag" width="400" persistent>
         <v-card>
           <v-progress-circular :size="400" width="30" color="primary" indeterminate style="font-size: 200px;">{{countDown}}</v-progress-circular>
         </v-card>
@@ -147,7 +147,7 @@ export default {
       dialogDeleteFlag: false,
       typingWords: "typingWords",
       dialogTypingFlag: false,
-      dialogCountDownFlag: false,
+      modalCountDownFlag: false,
       countDown: 0,
       modalTypingFlag: false,
       displayWord: "",
@@ -206,7 +206,7 @@ export default {
       });
       this.id = id
       this.dialogTypingFlag = !this.dialogTypingFlag
-      this.dialogCountDownFlag = !this.dialogCountDownFlag
+      this.modalCountDownFlag = !this.modalCountDownFlag
       this.setCountDown();
     },
     setCountDown: function() {
@@ -224,7 +224,7 @@ export default {
       }, 1000);
     },
     countFinished: function() {
-      this.dialogCountDownFlag = !this.dialogCountDownFlag;
+      this.modalCountDownFlag = !this.modalCountDownFlag;
       this.modalTypingFlag = !this.modalTypingFlag;
       this.correctCount = 0;
       this.missCount = 0;
