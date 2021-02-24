@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2021_02_18_094108) do
   end
 
   create_table "scores", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "typing_score", null: false
+    t.string "typing_score", null: false
     t.string "typing_time", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
