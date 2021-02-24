@@ -17,6 +17,7 @@
           <v-card-title class="headline primary white--text" primary-title>
             {{showBook.title}} #{{showBook.language}}
           </v-card-title>
+          <v-card-test v-for="(score, index) in showBook.score" :key="index"><p>{{index + 1}}: {{score}}pt</p></v-card-test>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="red" dark @click="toggleShowDialog(showBook.id)">cancel</v-btn>
