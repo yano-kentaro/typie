@@ -33,6 +33,11 @@ class Api::BooksController < ApplicationController
     @words = BookWord.includes(:word).where(book_id: params[:id]).order("RAND()")
   end
 
+  def score
+    typing_score = TypingScore.new
+    typing_score.save
+  end
+
   private
   def form_params
     params.require(:form).permit(:title, :code, :name, :color).merge(user_id: current_user.id)

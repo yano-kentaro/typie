@@ -83,8 +83,8 @@
           <v-card-text>{{correctCount}}文字正解</v-card-text>
           <v-card-text>{{missCount}}文字ミス</v-card-text>
           <v-card-text>{{typingTime}}秒</v-card-text>
-          <v-card-text>正答率:{{correctRate * 100}}%</v-card-text>
-          <v-card-text>スコア:{{typingScore}}points</v-card-text>
+          <v-card-text>正答率:{{Math.floor(correctRate * 10000) / 100}}%</v-card-text>
+          <v-card-text>スコア:{{typingScore}}pt</v-card-text>
         </v-card>
       </v-dialog>
 
@@ -202,7 +202,7 @@ export default {
         this.missCount ++;
       } 
     },
-    nextWord: function(event) {
+    nextWord: function() {
       if(this.typingWords == 0 && this.displayWord.length == this.charIndex){
         this.finishTyping();
       }else if(this.displayWord.length == this.charIndex) {
@@ -215,8 +215,9 @@ export default {
       this.dialogResultFlag = !this.dialogResultFlag
       this.finishTime = performance.now();
       this.typingTime = ( (this.finishTime - this.startTime) / 1000 ).toFixed(2)
-      this.correctRate = (this.correctCount - this.missCount) / this.correctCount
+      this.correctRate = ( (this.correctCount - this.missCount) / this.correctCount ).toFixed(4)
       this.typingScore = Math.round(this.correctCount * 60 / this.typingTime * Math.pow(this.correctRate, 2));
+      axios.post(`/api/books/${this.id}/score`, {typing_score: this.typingScore, typing_time: this.typingTime, user_id: this.indexBooks[0].user_id})
     },
   }
 }
