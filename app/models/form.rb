@@ -19,5 +19,10 @@ class Form
     end
     language = Language.where(name: name).first_or_create
     BookLanguage.create(book_id: book.id, language_id: language.id)
+    score = TypingScore.new
+    score.typing_score = "0"
+    score.typing_time = "0"
+    score.book_id = book.id
+    score.save
   end
 end
