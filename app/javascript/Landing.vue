@@ -7,10 +7,22 @@
           <h2>with Typie</h2>
         </div>
         <div class="introduce">
-          <div class="introduce-button"><v-btn color="primary" block rounded x-large>HOW TO USE</v-btn></div>
+          <div class="introduce-button"><v-btn width="300" color="primary" rounded x-large>
+            <v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer>HOW TO USE<v-spacer></v-spacer>
+            <v-icon>mdi-comment-question-outline</v-icon><v-spacer></v-spacer>
+          </v-btn></div>
             <div id="login">
-              <div id="sign-up"><v-btn href="/users/sign_up" color="green darken-1" rounded x-large dark>SIGN UP</v-btn></div>
-              <div id="sign-in"><v-btn href="/users/sign_in" color="teal lighten-1" rounded x-large dark>LOG IN</v-btn></div>
+              <v-spacer></v-spacer>
+              <v-btn width="150" href="/users/sign_up" color="green darken-1" rounded x-large dark>
+              <v-icon>mdi-human-greeting</v-icon><v-spacer></v-spacer>
+                SIGN UP<v-spacer></v-spacer>
+              </v-btn>
+              <v-spacer></v-spacer>
+              <v-btn width="150" href="/users/sign_in" color="teal lighten-1" rounded x-large dark>
+              <v-spacer></v-spacer><v-spacer></v-spacer>
+                LOG IN<v-spacer></v-spacer><v-icon style="transform: scale(-1, 1);">mdi-human-greeting</v-icon><v-spacer></v-spacer>
+              </v-btn>
+              <v-spacer></v-spacer>
             </div>
         </div>
       </div>
@@ -76,16 +88,36 @@ h2 {
 }
 
 .introduce {
-  width: 30%;
+  width: 50%;
   padding-top: 50px;
+}
+
+.introduce-button {
+  display: flex;
+  justify-content: center;
+}
+
+a {
+  transition: all .2s ease;
+}
+
+a:hover {
+  transform: scale(1.15, 1.15);
+}
+
+button {
+  transition: all .2s ease;
+}
+
+button:hover {
+  transform: scale(1.15, 1.15);
 }
 
 #login {
   height: 40%;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
   padding-top: 40px;
+  display: flex;
 }
 
 </style>
