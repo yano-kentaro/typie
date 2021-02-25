@@ -28,7 +28,7 @@
           カラー
         </div>
         <div class="select-box font">
-          <%= f.collection_select(:color, Color.all, :id, :name, {}, {class:"select-box"}) %>
+          <%= f.text_field :color, class:"color-picker", type:"color", value:"#1E88E5", required: true %>
         </div>
       </div>
 

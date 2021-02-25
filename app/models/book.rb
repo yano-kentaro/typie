@@ -1,10 +1,8 @@
 class Book < ApplicationRecord
-  extend ActiveHash::Associations::ActiveRecordExtensions
   validates :title, presence: true
-  validates :color_id, presence: true, numericality: { other_than: 1 }
+  validates :color, presence: true
 
   belongs_to :user
-  belongs_to :color
 
   has_many :book_scores, dependent: :destroy
   has_many :scores, through: :book_scores
