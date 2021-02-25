@@ -22,6 +22,7 @@
           </v-card-subtitle>
           <v-card-text>
             <v-row class="row">
+              <v-spacer></v-spacer>
               <v-col class="col" md="6" lg="6" xl="6">
               <v-card-text 
               v-for="(score, index) in showBook.score"
@@ -38,13 +39,16 @@
               >: {{time}} s
               </v-card-text>
               </v-col>
+              <v-spacer></v-spacer>
             </v-row>
           </v-card-text>
           <v-divider></v-divider>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn width="415" rounded  color="primary" @click="toggleTypingDialog(showBook.id)">
-              Typing<v-icon>mdi-keyboard-outline</v-icon>
+              <v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer>
+              Typing<v-spacer></v-spacer><v-icon>mdi-keyboard-outline</v-icon>
+              <v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer>
             </v-btn>
             <v-spacer></v-spacer>
           </v-card-actions>
@@ -52,11 +56,11 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn width="120" rounded color="orange" dark @click="toggleShowDialog(showBook.id)">
-              cancel<v-icon>mdi-cancel</v-icon>
+              <v-spacer></v-spacer><v-spacer></v-spacer>cancel<v-spacer></v-spacer><v-icon>mdi-cancel</v-icon>
               </v-btn>
             <v-spacer></v-spacer>
             <v-btn width="120" rounded color="error" dark @click="toggleDeleteDialog(showBook.id)">
-              Delete<v-icon>mdi-delete-circle-outline</v-icon>
+              <v-spacer></v-spacer><v-spacer></v-spacer>Delete<v-spacer></v-spacer><v-icon>mdi-delete-circle-outline</v-icon>
               </v-btn>
             <v-spacer></v-spacer>
           </v-card-actions>
@@ -76,11 +80,11 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn width="120" rounded color="orange" dark @click="toggleDeleteDialog(showBook.id)">
-              cancel<v-icon>mdi-cancel</v-icon>
+              <v-spacer></v-spacer><v-spacer></v-spacer>cancel<v-spacer></v-spacer><v-icon>mdi-cancel</v-icon>
             </v-btn>
             <v-spacer></v-spacer>
             <v-btn width="120" rounded color="error" dark @click="deleteBook(showBook.id)">
-              Delete<v-icon>mdi-delete-circle-outline</v-icon>
+              <v-spacer></v-spacer><v-spacer></v-spacer>Delete<v-spacer></v-spacer><v-icon>mdi-delete-circle-outline</v-icon>
             </v-btn>
             <v-spacer></v-spacer>
           </v-card-actions>
@@ -96,11 +100,11 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn width="120" rounded color="orange" dark @click="toggleTypingDialog(showBook.id)">
-              cancel<v-icon>mdi-cancel</v-icon>
+              <v-spacer></v-spacer><v-spacer></v-spacer>cancel<v-spacer></v-spacer><v-icon>mdi-cancel</v-icon>
             </v-btn>
             <v-spacer></v-spacer>
             <v-btn width="120" rounded color="primary" @click="beginTyping(showBook.id)">
-              start<v-icon>mdi-keyboard-outline</v-icon>
+              <v-spacer></v-spacer><v-spacer></v-spacer>start<v-spacer></v-spacer><v-icon>mdi-keyboard-outline</v-icon>
             </v-btn>
             <v-spacer></v-spacer>
           </v-card-actions>
