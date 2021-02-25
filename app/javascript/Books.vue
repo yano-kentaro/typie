@@ -2,6 +2,7 @@
   <v-app id="books">
     <div class="bg-img-books">
       <v-container class="container">
+
         <v-row class="row" cols="12">
           <v-col class="col" md="2.4" lg="2" xl="2" v-for="indexBook in indexBooks" :key="indexBook.id">
             <v-card v-ripple class="book" hover :color="indexBook.color" dark @click='toggleShowDialog(indexBook.id)'>
@@ -118,7 +119,8 @@
       </v-dialog>
 
       <v-dialog v-model="modalTypingFlag" width="500" persistent>
-        <v-card style="font-family: Source Han Code JP; height: 30vh; overflow: auto;">
+        <v-card style="font-family: Source Han Code JP; height: 38vh; overflow: auto;">
+          <v-card-title class="headline primary white--text">{{typingWords.length + 1}} words left.</v-card-title>
           <v-card-text style="font-size: 30px; padding-top: 30px;">{{displayWord}}</v-card-text>
           <v-text-field autofocus autocomplete="off"
           v-model="inputField"
