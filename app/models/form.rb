@@ -11,7 +11,7 @@ class Form
   end
 
   def save
-    book = Book.create(title: title, color_id: color, user_id: user_id)
+    book = Book.create(title: title, color: color, user_id: user_id)
     strings = code.split(/[\W|\d|\s]+/).uniq.select {|str| str.length != 1}
     strings.each do |string|
       word = Word.where(word: string).first_or_create
