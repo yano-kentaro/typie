@@ -275,7 +275,11 @@ export default {
       this.dialogResultFlag = !this.dialogResultFlag
       this.finishTime = performance.now();
       this.typingTime = ( (this.finishTime - this.startTime) / 1000 ).toFixed(2)
-      this.correctRate = ( (this.correctCount - this.missCount) / this.correctCount ).toFixed(4)
+      if(this.correctCount == 0){
+        this.correctRate = 0
+        } else { 
+          this.correctRate = ( (this.correctCount - this.missCount) / this.correctCount ).toFixed(4)
+          }
       this.typingScore = (this.correctCount * 60 / this.typingTime * Math.pow(this.correctRate, 2)).toFixed(0);
       axios.post(`/api/books/${this.id}/score`,{typing_score: {typing_score: this.typingScore, typing_time: this.typingTime, book_id: this.showBook.id}})
       .then(response=> {
