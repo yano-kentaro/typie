@@ -6,7 +6,6 @@
       <%= form_with model: @form, url: api_books_path, local: true do |f| %>
     </div>
     <div class='new-code-form'>
-
       <div class="title-language">
         <div class="new-code-text field font">
           <%= f.label :title,  "Title" %><br>
@@ -14,12 +13,12 @@
         </div>
         <div class="new-code-text field font">
           <%= f.label :name, "Language" %><br>
-          <%= f.text_field :name, class:"input-tag", autocomplete: "off", required: true %>
+          <%= f.text_field :name, class:"input-tag", autocomplete: "off", required: true, maxlength: 12 %>
         </div>
       </div>
 
       <div class="new-code-textarea field font">
-        <%= f.label :code,  "Code" %><br>
+        <%= f.label :code, "Code" %>
         <%= f.text_area :code, class:"input-message", autocomplete: "off", required: true, minlength: 2 %>
       </div>
 
