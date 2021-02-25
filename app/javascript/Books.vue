@@ -257,10 +257,6 @@ export default {
       this.dialogShowFlag = !this.dialogShowFlag
     },
     toggleTypingDialog: function(id) {
-      axios.get('/api/books/' + id)
-      .then(response=>{
-        this.showBook = response.data
-      });
       this.id = id
       this.dialogTypingFlag = !this.dialogTypingFlag
       this.dialogShowFlag = !this.dialogShowFlag
@@ -331,7 +327,7 @@ export default {
           this.correctRate = ( (this.correctCount - this.missCount) / this.correctCount ).toFixed(4)
           }
       this.typingScore = (this.correctCount * 60 / this.typingTime * Math.pow(this.correctRate, 2)).toFixed(0);
-      axios.post(`/api/books/${this.id}/score`,{typing_score: {typing_score: this.typingScore, typing_time: this.typingTime, book_id: this.showBook.id}})
+      axios.post(`/api/books/${this.id}/score`,{score: {typing_score: this.typingScore, typing_time: this.typingTime, book_id: this.showBook.id}})
       .then(response=> {
         this.setBook();
       })
@@ -342,7 +338,7 @@ export default {
     tryAgainTyping: function(id) {
       this.dialogResultFlag = !this.dialogResultFlag
       this.dialogTypingFlag = !this.dialogTypingFlag
-      beginTyping(id);
+      this.beginTyping(id);
     },
     refinedSearch: function() {
       this.setBook();
