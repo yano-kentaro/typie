@@ -30,7 +30,8 @@ class Api::BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
-    @form = Form.new(form_params, )
+    @form = Form.new(form_params, book: @book)
+    @form.update
   end
 
   def show

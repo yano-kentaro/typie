@@ -100,9 +100,9 @@
           </div>
           <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn width="150" rounded color="orange" dark @click="toggleEditDialog()">cancel</v-btn>
+          <v-btn width="150" rounded color="orange" dark @click="toggleEditDialog">cancel</v-btn>
           <v-spacer></v-spacer>
-          <v-btn width="150" rounded color="success">update</v-btn>
+          <v-btn width="150" rounded color="success" @click="updateBook(showBook.id)">update</v-btn>
           <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
@@ -232,6 +232,7 @@ export default {
       putTitle: "",
       putName: "",
       putColor: "",
+      putCode: "",
       dialogDeleteFlag: false,
       typingWords: "typingWords",
       dialogTypingFlag: false,
@@ -392,10 +393,19 @@ export default {
         this.putTitle = response.data.title
         this.putName = response.data.name
         this.putColor = response.data.color
+        this.putCode = response.data.code
       });
       this.dialogEditFlag = !this.dialogEditFlag
       this.dialogShowFlag = !this.dialogShowFlag
     },
+    updateBook: function(id) {
+      axios.put(`/api/books/${id}`, { form: { title: this.putTitle, name: this.putName, color: this.putColor, code: this.putCode } })
+      .then(response=> {
+        this.setBook();
+      });
+      this.dialogEditFlag = !this.dialogEditFlag
+      this.toggleShowDialog(id);
+    }
   }
 }
 
