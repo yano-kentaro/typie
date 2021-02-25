@@ -1,6 +1,24 @@
 <template>
   <v-app id="books">
     <div class="bg-img-books">
+
+      <div class="menus">
+        <v-menu offset-y transition="slide-y-transition">
+          <template v-slot:activator="{ on }">
+            <v-btn color="primary" v-on="on" @click="refinedSearch" :disabled="searchDisabled">search</v-btn>
+          </template>
+          <v-list>
+            <v-subheader>Languages</v-subheader>
+            <v-list-item-group>
+              <v-list-item v-for="name in languageList" :key="name.id">
+                <v-list-item-title style="font-family: sans-serif; font-weight: bold;" @click="refinedSetBook(name)">{{name}}</v-list-item-title>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
+        </v-menu>
+        <v-btn color="success" @click="refleshSetBook" :disabled="refleshDisabled">reflesh</v-btn>
+      </div>
+
       <v-container class="container">
 
         <v-row class="row" cols="12">
@@ -183,6 +201,8 @@ export default {
   data: function() {
     return {
       indexBooks: "indexBooks",
+      searchDisabled: false,
+      refleshDisabled: true,
       dialogShowFlag: false,
       showBook: "showBook",
       bookColor: "",
@@ -203,6 +223,7 @@ export default {
       typingTime: 0,
       correctRate: 0,
       typingScore: 0,
+      languageList: [],
     }
   },
   mounted() {
@@ -322,7 +343,22 @@ export default {
       this.dialogResultFlag = !this.dialogResultFlag
       this.dialogTypingFlag = !this.dialogTypingFlag
       beginTyping(id);
-    }
+    },
+    refinedSearch: function() {
+      this.setBook();
+      let array = this.indexBooks.map(i => i.language)
+      this.languageList = Array.from(new Set(array)).sort()
+    },
+    refinedSetBook: function(name) {
+      this.indexBooks = this.indexBooks.filter(i => i.language === name)
+      this.searchDisabled = !this.searchDisabled
+      this.refleshDisabled = !this.refleshDisabled
+    },
+    refleshSetBook: function() {
+      this.setBook();
+      this.searchDisabled = !this.searchDisabled
+      this.refleshDisabled = !this.refleshDisabled
+    },
   }
 }
 
@@ -338,12 +374,20 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+
+.menus {
+  width: 60%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .container {
   height: 75%;
   background-color: rgba(223, 223, 223, 0.3);
-  margin-top: 50px;
   overflow: scroll;
 }
 
