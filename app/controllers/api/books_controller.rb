@@ -12,8 +12,13 @@ class Api::BooksController < ApplicationController
   def create
     @form = Form.new(form_params)
     if @form.valid?
-      @form.save
-      redirect_to pages_path
+      if @form.save?
+        @form.save
+        redirect_to pages_path
+      else
+        flash[:notice] = "Word was not found."
+        render :new
+      end
     else
       render :new
     end

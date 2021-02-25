@@ -10,6 +10,15 @@ class Form
     validates :user_id
   end
 
+  def save?
+    strings = code.split(/[\W|\d|\s]+/).uniq.select {|str| str.length != 1}
+    unless strings.empty?
+      true
+    else
+      false
+    end
+  end
+
   def save
     book = Book.create(title: title, color: color, user_id: user_id)
     strings = code.split(/[\W|\d|\s]+/).uniq.select {|str| str.length != 1}
