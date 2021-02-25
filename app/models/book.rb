@@ -4,8 +4,7 @@ class Book < ApplicationRecord
 
   belongs_to :user
 
-  has_many :book_scores, dependent: :destroy
-  has_many :scores, through: :book_scores
+  has_many :scores, dependent: :destroy
   has_many :book_languages, dependent: :destroy
   has_many :languages, through: :book_languages
   has_many :book_words, dependent: :destroy

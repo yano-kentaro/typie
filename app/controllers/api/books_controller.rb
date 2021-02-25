@@ -39,8 +39,8 @@ class Api::BooksController < ApplicationController
   end
 
   def score
-    typing_score = TypingScore.new(score_params)
-    typing_score.save
+    score = Score.new(score_params)
+    score.save
   end
 
   private
@@ -49,6 +49,6 @@ class Api::BooksController < ApplicationController
   end
 
   def score_params
-    params.require(:typing_score).permit(:typing_score, :typing_time, :book_id)
+    params.require(:score).permit(:typing_score, :typing_time, :book_id)
   end
 end

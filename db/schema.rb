@@ -21,15 +21,6 @@ ActiveRecord::Schema.define(version: 2021_02_18_094108) do
     t.index ["language_id"], name: "index_book_languages_on_language_id"
   end
 
-  create_table "book_scores", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "book_id", null: false
-    t.bigint "score_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["book_id"], name: "index_book_scores_on_book_id"
-    t.index ["score_id"], name: "index_book_scores_on_score_id"
-  end
-
   create_table "book_words", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "book_id", null: false
     t.bigint "word_id", null: false
@@ -57,8 +48,10 @@ ActiveRecord::Schema.define(version: 2021_02_18_094108) do
   create_table "scores", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "typing_score", null: false
     t.string "typing_time", null: false
+    t.bigint "book_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_scores_on_book_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -82,9 +75,8 @@ ActiveRecord::Schema.define(version: 2021_02_18_094108) do
 
   add_foreign_key "book_languages", "books"
   add_foreign_key "book_languages", "languages"
-  add_foreign_key "book_scores", "books"
-  add_foreign_key "book_scores", "scores"
   add_foreign_key "book_words", "books"
   add_foreign_key "book_words", "words"
   add_foreign_key "books", "users"
+  add_foreign_key "scores", "books"
 end
