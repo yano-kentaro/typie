@@ -3,16 +3,17 @@
     <div class="bg-img-books">
 
       <div class="menus">
-      <v-menu offset-y>
-        <template v-slot:activator="{ on }">
-          <v-btn color="primary" v-on="on" @click="refinedSearch">refined</v-btn>
-        </template>
-        <v-list>
-          <v-list-item v-for="name in languageList" :key="name.id">
-            <v-list-item-title>{{name}}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
+        <v-menu offset-y>
+          <template v-slot:activator="{ on }">
+            <v-btn color="primary" v-on="on" @click="refinedSearch" :disabled="searchDisabled">search</v-btn>
+          </template>
+          <v-list>
+            <v-list-item v-for="name in languageList" :key="name.id">
+              <v-list-item-title @click="refinedSetBook(name)">{{name}}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+        <v-btn color="success" @click="refleshSetBook" :disabled="refleshDisabled">reflesh</v-btn>
       </div>
 
       <v-container class="container">
@@ -197,6 +198,8 @@ export default {
   data: function() {
     return {
       indexBooks: "indexBooks",
+      searchDisabled: false,
+      refleshDisabled: true,
       dialogShowFlag: false,
       showBook: "showBook",
       bookColor: "",
@@ -342,7 +345,16 @@ export default {
       this.setBook();
       let array = this.indexBooks.map(i => i.language)
       this.languageList = Array.from(new Set(array)).sort()
-      console.log(this.languageList);
+    },
+    refinedSetBook: function(name) {
+      this.indexBooks = this.indexBooks.filter(i => i.language === name)
+      this.searchDisabled = !this.searchDisabled
+      this.refleshDisabled = !this.refleshDisabled
+    },
+    refleshSetBook: function() {
+      this.setBook();
+      this.searchDisabled = !this.searchDisabled
+      this.refleshDisabled = !this.refleshDisabled
     },
   }
 }
