@@ -16,12 +16,21 @@ class Api::BooksController < ApplicationController
         @form.save
         redirect_to pages_path
       else
-        flash[:notice] = "Word was not found."
         render :new
       end
     else
       render :new
     end
+  end
+
+  def edit
+    @book = Book.find(params[:id])
+    @form = Form.new(book: @book)
+  end
+
+  def update
+    @book = Book.find(params[:id])
+    @form = Form.new(form_params, )
   end
 
   def show
