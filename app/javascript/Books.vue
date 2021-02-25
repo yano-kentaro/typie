@@ -87,6 +87,27 @@
         </v-card>
       </v-dialog>
 
+      <v-dialog v-model="dialogEditFlag" width="400">
+        <v-card>
+          <v-card-title class="headline success white--text">
+            Edit
+          </v-card-title>
+          <v-divider></v-divider>
+          <v-text-field v-model="putTitle"></v-text-field>
+          <v-text-field v-model="putName"></v-text-field>
+          <div style="display: flex; justify-content: center;">
+          <v-color-picker v-model="putColor"></v-color-picker>
+          </div>
+          <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn width="150" rounded color="orange" dark @click="toggleEditDialog()">cancel</v-btn>
+          <v-spacer></v-spacer>
+          <v-btn width="150" rounded color="success">update</v-btn>
+          <v-spacer></v-spacer>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
       <v-dialog v-model="dialogDeleteFlag" width="400">
         <v-card>
           <v-card-title class="headline error white--text" primary-title>
@@ -207,6 +228,10 @@ export default {
       dialogShowFlag: false,
       showBook: "showBook",
       bookColor: "",
+      dialogEditFlag: false,
+      putTitle: "",
+      putName: "",
+      putColor: "",
       dialogDeleteFlag: false,
       typingWords: "typingWords",
       dialogTypingFlag: false,
@@ -356,11 +381,20 @@ export default {
       this.searchDisabled = !this.searchDisabled
       this.refleshDisabled = !this.refleshDisabled
     },
+    toggleEditDialog: function() {
+      this.dialogEditFlag = !this.dialogEditFlag
+      this.dialogShowFlag = !this.dialogShowFlag
+    },
     editBook: function(id) {
       axios.get(`/api/books/${id}/edit`)
       .then(response=> {
         console.log(response.data);
-      })
+        this.putTitle = response.data.title
+        this.putName = response.data.name
+        this.putColor = response.data.color
+      });
+      this.dialogEditFlag = !this.dialogEditFlag
+      this.dialogShowFlag = !this.dialogShowFlag
     },
   }
 }
