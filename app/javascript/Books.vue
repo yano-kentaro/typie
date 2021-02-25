@@ -82,6 +82,7 @@
               <v-spacer></v-spacer><v-spacer></v-spacer>Delete<v-spacer></v-spacer><v-icon>mdi-delete-circle-outline</v-icon>
               </v-btn>
             <v-spacer></v-spacer>
+            <v-btn @click="editBook(showBook.id)">edit</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -354,6 +355,12 @@ export default {
       this.setBook();
       this.searchDisabled = !this.searchDisabled
       this.refleshDisabled = !this.refleshDisabled
+    },
+    editBook: function(id) {
+      axios.get(`/api/books/${id}/edit`)
+      .then(response=> {
+        console.log(response.data);
+      })
     },
   }
 }
