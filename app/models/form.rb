@@ -34,4 +34,25 @@ class Form
     score.book_id = book.id
     score.save
   end
+
+  delegate :persisted?, to: :book
+
+  def initialize(attributes = nil, book: Book.new)
+    @book = book
+    attributes ||= default_attributes
+    super(attributes)
+  end
+
+  private
+
+  attr_reader :book
+
+  def default_attributes
+    {
+      title: book.title,
+      color: book.color,
+      code: book.words.pluck(:word).join(','),
+      name: book.languages.pluck(:name).join(',')
+    }
+  end
 end
