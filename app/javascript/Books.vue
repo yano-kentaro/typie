@@ -277,7 +277,9 @@ export default {
       this.typingTime = ( (this.finishTime - this.startTime) / 1000 ).toFixed(2)
       if(this.correctCount == 0){
         this.correctRate = 0
-        } else { 
+        } else if(this.correctCount < this.missCount){
+          this.correctRate = 0
+        } else {
           this.correctRate = ( (this.correctCount - this.missCount) / this.correctCount ).toFixed(4)
           }
       this.typingScore = (this.correctCount * 60 / this.typingTime * Math.pow(this.correctRate, 2)).toFixed(0);
