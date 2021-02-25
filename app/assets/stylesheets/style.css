@@ -96,6 +96,18 @@
   border: red 5px solid;
 }
 
+.input-message:focus:invalid {
+  border: red 5px solid;
+}
+
+.input-message:valid {
+  border: rgb(2, 175, 2) 6px solid;
+}
+
+.input-tag:valid {
+  border: rgb(2, 175, 2) 6px solid;
+}
+
 .sign-up input:focus:valid ~ .error .invalid {
   display: none;
 }
