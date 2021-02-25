@@ -139,12 +139,33 @@
 
       <v-dialog v-model="dialogResultFlag" width="500">
         <v-card>
-          <v-card-title>Result</v-card-title>
-          <v-card-text>{{correctCount}}文字正解</v-card-text>
-          <v-card-text>{{missCount}}文字ミス</v-card-text>
-          <v-card-text>{{typingTime}}秒</v-card-text>
-          <v-card-text>正答率:{{Math.floor(correctRate * 10000) / 100}}%</v-card-text>
-          <v-card-text>スコア:{{typingScore}}pt</v-card-text>
+          <v-card-title class="headline primary white--text">Result</v-card-title>
+          <div class="result">
+          <v-row class="row" cols="12">
+            <v-col class="col" md="6" style="text-align: right;">Correct Characters:</v-col>
+            <v-col class="col" md="6">{{correctCount}} chars</v-col>
+            <v-col class="col" md="6" style="text-align: right;">Miss Characters:</v-col>
+            <v-col class="col" md="6">{{missCount}} chars</v-col>
+            <v-col class="col" md="6" style="text-align: right;">Correct Rate:</v-col>
+            <v-col class="col" md="6">{{Math.floor(correctRate * 10000) / 100}} %</v-col>
+            <v-col class="col" md="6" style="text-align: right;">Clear Time:</v-col>
+            <v-col class="col" md="6">{{typingTime}} s</v-col>
+            <v-col class="col" md="6" style="text-align: right;">Typing Score:</v-col>
+            <v-col class="col" md="6">{{typingScore}} pt</v-col>
+          </v-row>
+          </div>
+          <v-divider></v-divider>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn width="150" rounded color="orange" dark @click="toggleResultDialog()">
+              <v-spacer></v-spacer><v-spacer></v-spacer>close<v-spacer></v-spacer><v-icon>mdi-cancel</v-icon><v-spacer></v-spacer>
+            </v-btn>
+            <v-spacer></v-spacer>
+            <v-btn width="150" rounded color="primary" @click="tryAgainTyping(showBook.id)">
+              <v-spacer></v-spacer>try again<v-spacer></v-spacer><v-icon>mdi-keyboard-outline</v-icon>
+            </v-btn>
+            <v-spacer></v-spacer>
+          </v-card-actions>
         </v-card>
       </v-dialog>
 
@@ -213,6 +234,10 @@ export default {
       this.dialogShowFlag = !this.dialogShowFlag
     },
     toggleTypingDialog: function(id) {
+      axios.get('/api/books/' + id)
+      .then(response=>{
+        this.showBook = response.data
+      });
       this.id = id
       this.dialogTypingFlag = !this.dialogTypingFlag
       this.dialogShowFlag = !this.dialogShowFlag
@@ -288,6 +313,14 @@ export default {
         this.setBook();
       })
     },
+    toggleResultDialog: function() {
+      this.dialogResultFlag = !this.dialogResultFlag
+    },
+    tryAgainTyping: function(id) {
+      this.dialogResultFlag = !this.dialogResultFlag
+      this.dialogTypingFlag = !this.dialogTypingFlag
+      beginTyping(id);
+    }
   }
 }
 
@@ -344,5 +377,14 @@ button:hover {
 
 .v-input {
   padding: 0 25px;
+}
+
+.result {
+  height: 225px;
+}
+
+.result .col {
+  font-size: 25px;
+  height: 30px;
 }
 </style>
