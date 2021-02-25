@@ -4,7 +4,7 @@
       <v-container class="container">
         <v-row class="row" cols="12">
           <v-col class="col" md="2.4" lg="2" xl="2" v-for="indexBook in indexBooks" :key="indexBook.id">
-            <v-card v-ripple class="book" hover color="primary" dark @click='toggleShowDialog(indexBook.id)'>
+            <v-card v-ripple class="book" hover :color="indexBook.color" dark @click='toggleShowDialog(indexBook.id)'>
               <v-card-title>{{indexBook.title}}</v-card-title>
               <v-card-subtitle># {{indexBook.language}}</v-card-subtitle>
               <v-card-title>{{`${indexBook.book_words}words`}}<br>Best: {{indexBook.score}}pt</v-card-title>
@@ -162,6 +162,7 @@ export default {
       indexBooks: "indexBooks",
       dialogShowFlag: false,
       showBook: "showBook",
+      bookColor: "",
       dialogDeleteFlag: false,
       typingWords: "typingWords",
       dialogTypingFlag: false,
