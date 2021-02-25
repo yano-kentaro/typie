@@ -112,18 +112,20 @@
   border: rgb(2, 175, 2) 6px solid;
   background-color: rgba(223, 223, 223, 0.5);
 }
-.actions input[type="submit"] {
-  width: 80%;
+.actions label {
+  width: 40%;
   background-color: #00007f;
   border-radius: 20px;
   color: #fff;
   border: 0;
-  font-size: 18px;
+  font-size: 20px;
   padding: 8px 0;
   transition: all 0.3s ease;
+  text-align: center;
+  letter-spacing: 3px;
 }
 
-.actions input[type="submit"]:hover {
+.actions label:hover {
   background-color: #0000af;
   transform: scale(1.05, 1.1);
 }
@@ -345,4 +347,32 @@
 
 .new-code-send {
   margin-bottom: 30px;
+}
+
+#log-out {
+  display: none;
+}
+
+#new-code {
+  display: none;
+}
+
+#code-submit {
+  display: none;
+}
+
+#log-in {
+  display: none;
+}
+
+#sign-up {
+  display: none;
+}
+
+label {
+  cursor: pointer;
+}
+
+label:hover {
+  transform: scale(1.1, 1.1);
 }

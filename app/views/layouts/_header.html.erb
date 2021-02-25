@@ -4,13 +4,19 @@
   </div>
   <div class="tool-bar">
     <div class="new-code flex">
-      <div class="tool-bar-button bar-font"><%= button_to "NEW CODE",'/api/books/new', method: :get %></div>
+      <div class="tool-bar-button bar-font">
+        <%= button_to "NEW CODE",'/api/books/new', method: :get, id: "new-code" %>
+        <label for="new-code">NEW CODE</label>
+      </div>
     </div>
     <div class="user-name flex bar-font">
       <%= current_user.nickname %>
     </div>
     <div class="log-out flex">
-      <div class="tool-bar-button bar-font"><%= button_to "Log out", destroy_user_session_path, method: :delete %></div>
+      <div class="tool-bar-button bar-font">
+        <%= button_to "Log out", destroy_user_session_path, method: :delete, id: "log-out" %>
+        <label for="log-out">Log out</label>
+      </div>
     </div>
   </div>
 </div>
