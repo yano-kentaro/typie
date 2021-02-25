@@ -1,6 +1,20 @@
 <template>
   <v-app id="books">
     <div class="bg-img-books">
+
+      <div class="menus">
+      <v-menu offset-y>
+        <template v-slot:activator="{ on }">
+          <v-btn color="primary" v-on="on" @click="refinedSearch">refined</v-btn>
+        </template>
+        <v-list>
+          <v-list-item v-for="name in languageList" :key="name.id">
+            <v-list-item-title>{{name}}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+      </div>
+
       <v-container class="container">
 
         <v-row class="row" cols="12">
@@ -203,6 +217,7 @@ export default {
       typingTime: 0,
       correctRate: 0,
       typingScore: 0,
+      languageList: [],
     }
   },
   mounted() {
@@ -322,7 +337,13 @@ export default {
       this.dialogResultFlag = !this.dialogResultFlag
       this.dialogTypingFlag = !this.dialogTypingFlag
       beginTyping(id);
-    }
+    },
+    refinedSearch: function() {
+      this.setBook();
+      let array = this.indexBooks.map(i => i.language)
+      this.languageList = Array.from(new Set(array)).sort()
+      console.log(this.languageList);
+    },
   }
 }
 
@@ -338,12 +359,20 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+
+.menus {
+  width: 60%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .container {
   height: 75%;
   background-color: rgba(223, 223, 223, 0.3);
-  margin-top: 50px;
   overflow: scroll;
 }
 
