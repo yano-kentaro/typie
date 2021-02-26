@@ -78,11 +78,14 @@
               <v-spacer></v-spacer><v-spacer></v-spacer>cancel<v-spacer></v-spacer><v-icon>mdi-cancel</v-icon>
               </v-btn>
             <v-spacer></v-spacer>
+            <v-btn width="120" rounded color="success" @click="editBook(showBook.id)">
+              <v-spacer></v-spacer><v-spacer></v-spacer>edit<v-spacer></v-spacer><v-icon>mdi-square-edit-outline</v-icon>
+              </v-btn>
+            <v-spacer></v-spacer>
             <v-btn width="120" rounded color="error" dark @click="toggleDeleteDialog(showBook.id)">
               <v-spacer></v-spacer><v-spacer></v-spacer>Delete<v-spacer></v-spacer><v-icon>mdi-delete-circle-outline</v-icon>
               </v-btn>
             <v-spacer></v-spacer>
-            <v-btn @click="editBook(showBook.id)">edit</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -93,16 +96,32 @@
             Edit
           </v-card-title>
           <v-divider></v-divider>
-          <v-text-field v-model="putTitle"></v-text-field>
-          <v-text-field v-model="putName"></v-text-field>
+          <v-text-field 
+            v-model="putTitle"
+            label="Title"
+            outlined
+            :rules="[required, title_length]"
+            style="margin-top: 20px;"
+          ></v-text-field>
+          <v-text-field
+            v-model="putName"
+            label="Language"
+            outlined
+            :rules="[required, language_length]"
+          ></v-text-field>
           <div style="display: flex; justify-content: center;">
           <v-color-picker v-model="putColor"></v-color-picker>
           </div>
+          <v-divider></v-divider>
           <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn width="150" rounded color="orange" dark @click="toggleEditDialog">cancel</v-btn>
+          <v-btn width="150" rounded color="orange" dark @click="toggleEditDialog">
+            <v-spacer></v-spacer><v-spacer></v-spacer>cancel<v-spacer></v-spacer><v-icon>mdi-cancel</v-icon>
+          </v-btn>
           <v-spacer></v-spacer>
-          <v-btn width="150" rounded color="success" @click="updateBook(showBook.id)">update</v-btn>
+          <v-btn width="150" rounded color="success" @click="updateBook(showBook.id)">
+            <v-spacer></v-spacer><v-spacer></v-spacer>update<v-spacer></v-spacer><v-icon>mdi-square-edit-outline</v-icon>
+          </v-btn>
           <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
@@ -251,6 +270,9 @@ export default {
       correctRate: 0,
       typingScore: 0,
       languageList: [],
+      required: value => !!value || "This content is required.",
+      title_length: value => value.length <= 15 || "Please enter within 15 chars.",
+      language_length: value => value.length <= 12 || "Please enter within 12 chars."
     }
   },
   mounted() {
@@ -389,7 +411,6 @@ export default {
     editBook: function(id) {
       axios.get(`/api/books/${id}/edit`)
       .then(response=> {
-        console.log(response.data);
         this.putTitle = response.data.title
         this.putName = response.data.name
         this.putColor = response.data.color
