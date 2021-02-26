@@ -32,14 +32,14 @@
         </v-row>
 
       <v-dialog v-model="dialogShowFlag" width="500">
-        <v-card>
-          <v-card-title class="headline primary white--text" primary-title>
+        <v-card :color="showBook.color">
+          <v-card-title class="headline white--text" primary-title>
             {{showBook.title}}
           </v-card-title>
-          <v-card-subtitle class="primary white--text" style="height: 30px;">
+          <v-card-subtitle class="white--text" style="height: 30px;">
             #{{showBook.language}}
           </v-card-subtitle>
-          <v-card-text>
+          <v-card-text class="white">
             <v-row class="row">
               <v-spacer></v-spacer>
               <v-col class="col" md="6" lg="6" xl="6">
@@ -62,7 +62,7 @@
             </v-row>
           </v-card-text>
           <v-divider></v-divider>
-          <v-card-actions>
+          <v-card-actions class="white">
             <v-spacer></v-spacer>
             <v-btn width="415" rounded  color="primary" @click="toggleTypingDialog(showBook.id)">
               <v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer>
@@ -72,7 +72,7 @@
             <v-spacer></v-spacer>
           </v-card-actions>
           <v-divider></v-divider>
-          <v-card-actions>
+          <v-card-actions class="white">
             <v-spacer></v-spacer>
             <v-btn width="120" rounded color="orange" dark @click="toggleShowDialog(showBook.id)">
               <v-spacer></v-spacer><v-spacer></v-spacer>cancel<v-spacer></v-spacer><v-icon>mdi-cancel</v-icon>
@@ -119,7 +119,7 @@
             <v-spacer></v-spacer><v-spacer></v-spacer>cancel<v-spacer></v-spacer><v-icon>mdi-cancel</v-icon>
           </v-btn>
           <v-spacer></v-spacer>
-          <v-btn width="150" rounded color="success" @click="updateBook(showBook.id)">
+          <v-btn width="150" rounded color="success" @click="updateBook(showBook.id)" :disabled="validation">
             <v-spacer></v-spacer><v-spacer></v-spacer>update<v-spacer></v-spacer><v-icon>mdi-square-edit-outline</v-icon>
           </v-btn>
           <v-spacer></v-spacer>
@@ -134,7 +134,7 @@
           </v-card-title>
           <v-divider></v-divider>
           <v-card-text style="margin-top: 30px;">
-            <p style="text-align: center; font-size: 20px; font-weight: bold;">本当に削除しますか？</p>
+            <p style="text-align: center; font-size: 23px; font-weight: bold;">Do you really want to delete this?</p>
           </v-card-text>
           <v-divider></v-divider>
           <v-card-actions>
@@ -423,9 +423,14 @@ export default {
       axios.put(`/api/books/${id}`, { form: { title: this.putTitle, name: this.putName, color: this.putColor, code: this.putCode } })
       .then(response=> {
         this.setBook();
+        this.toggleShowDialog(id);
       });
       this.dialogEditFlag = !this.dialogEditFlag
-      this.toggleShowDialog(id);
+    },
+  },
+  computed: {
+    validation: function() {
+      return(!this.putTitle || !this.putName || !this.putColor || this.putTitle.length > 15 || this.putName.length > 12)
     }
   }
 }
