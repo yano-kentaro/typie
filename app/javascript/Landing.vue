@@ -1,16 +1,18 @@
 <template>
   <v-app id="landing">
     <div class="bg-img">
+
       <div class="contents">
         <div class="catch-copy">
           <h1>Typing for Programer</h1>
           <h2>with Typie</h2>
         </div>
         <div class="introduce">
-          <div class="introduce-button"><v-btn width="300" color="primary" rounded x-large>
-            <v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer>HOW TO USE<v-spacer></v-spacer>
-            <v-icon>mdi-comment-question-outline</v-icon><v-spacer></v-spacer>
-          </v-btn></div>
+          <div class="introduce-button">
+            <v-btn width="300" color="primary" rounded x-large @click="toggleCarouselFlag">
+              <v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer>HOW TO USE<v-spacer></v-spacer>
+              <v-icon>mdi-comment-question-outline</v-icon><v-spacer></v-spacer>
+            </v-btn></div>
             <div id="login">
               <v-spacer></v-spacer>
               <v-btn width="150" href="/users/sign_up" color="green darken-1" rounded x-large dark>
@@ -26,13 +28,48 @@
             </div>
         </div>
       </div>
+
+      <v-dialog v-model="dialogCarouselFlag" width="800">
+        <v-card color="black" height="500">
+          <v-carousel
+          :continuous="false"
+          >
+            <v-carousel-item
+            v-for="(item, i) in items"
+            :key="i"
+            :src="item.src"
+            >
+            <v-card-title class="headline primary">
+              <v-spacer/><span v-text="item.text"></span><v-spacer/>
+            </v-card-title>
+            </v-carousel-item>
+          </v-carousel>
+        </v-card>
+      </v-dialog>
+
     </div>
   </v-app>
 </template>
 
 <script>
 export default {
-  
+  data: function() {
+    return {
+      dialogCarouselFlag: false,
+      items: [
+        { src: '/carousel_01.png', text: "Typie is a typing app for Engineers!" },
+        { src: '/carousel_02.png', text: "Typie extracts English words from your Source Code!" },
+        { src: '/carousel_03.png', text: "You can practice typing with the words!" },
+        { src: '/carousel_04.png', text: "You can check the typing result immediately." },
+        { src: '/carousel_05.png', text: "You can edit the title, language, and color." },
+      ],
+    }
+  },
+  methods: {
+    toggleCarouselFlag: function() {
+      this.dialogCarouselFlag = !this.dialogCarouselFlag
+    },
+  },
 }
 </script>
 
@@ -118,6 +155,12 @@ button:hover {
   width: 100%;
   padding-top: 40px;
   display: flex;
+}
+
+span {
+  font-family: "PT Sans", sans-serif, serif;
+  font-size: 20pt;
+  letter-spacing: 2px;
 }
 
 </style>
