@@ -187,7 +187,7 @@
           @keyup="nextWord"
           height="40px" style="height: 50px; font-size: 30px;"></v-text-field>
           <v-card-actions style="display: flex; justify-content: center;">
-            <v-btn width="200" rounded color="orange" dark @click="finishTyping()">
+            <v-btn width="200" rounded color="orange" dark @click="finishTyping()" style="margin-top: 30px;">
               <v-spacer></v-spacer>
               <v-icon style="transform: scale(-1, 1);">mdi-exit-run</v-icon>
               <v-spacer></v-spacer>Exit<v-spacer></v-spacer>

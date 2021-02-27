@@ -53,6 +53,7 @@ Vue.use(VueAxiosPlugin, { axios: axios })
 Vue.use(Vuetify);
 const vuetify = new Vuetify();
 
+
 document.addEventListener('DOMContentLoaded', () => {
   const landing = new Vue({
     vuetify,
