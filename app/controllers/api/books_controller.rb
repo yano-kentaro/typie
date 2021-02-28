@@ -2,7 +2,7 @@ class Api::BooksController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @books = Book.where(user_id: current_user.id).includes(:languages, :book_words, :scores).order("created_at DESC")
+    @books = Book.where(user_id: current_user.id).includes(:languages, :book_words, :scores).order('created_at DESC')
   end
 
   def new
@@ -45,7 +45,7 @@ class Api::BooksController < ApplicationController
   end
 
   def typing
-    @words = BookWord.includes(:word).where(book_id: params[:id]).order("RAND()")
+    @words = BookWord.includes(:word).where(book_id: params[:id]).order('RAND()')
   end
 
   def score
@@ -54,6 +54,7 @@ class Api::BooksController < ApplicationController
   end
 
   private
+
   def form_params
     params.require(:form).permit(:title, :code, :name, :color).merge(user_id: current_user.id)
   end
