@@ -8,6 +8,10 @@
 
 ## Demo Page  
 - URL: http://54.95.229.185/
+- Basic auth ID:        yano
+- Basic auth PASS:      0829
+- test account email:   test@00
+- test account pass:    test00
 <br>
 
 ## Persona  
