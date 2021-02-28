@@ -7,7 +7,7 @@
 <br>
 
 ## Demo Page  
-- URL: https://typie-34029.herokuapp.com/  
+- URL: http://54.95.229.185/
 <br>
 
 ## Persona  
