@@ -12,37 +12,37 @@ RSpec.describe User, type: :model do
     end
     context 'ユーザー登録出来ないとき' do
       it 'ニックネームが未記入' do
-        @user.nickname = ""
+        @user.nickname = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Nickname 半角英数8文字以内で入力してください")
+        expect(@user.errors.full_messages).to include('Nickname 半角英数8文字以内で入力してください')
       end
       it 'ニックネームに全角文字が入っている' do
-        @user.nickname = "あabc"
+        @user.nickname = 'あabc'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Nickname 半角英数8文字以内で入力してください")
+        expect(@user.errors.full_messages).to include('Nickname 半角英数8文字以内で入力してください')
       end
       it 'ニックネームに記号が入っている' do
-        @user.nickname = "@abc"
+        @user.nickname = '@abc'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Nickname 半角英数8文字以内で入力してください")
+        expect(@user.errors.full_messages).to include('Nickname 半角英数8文字以内で入力してください')
       end
       it 'ニックネームが8文字以上' do
-        @user.nickname = "123456789"
+        @user.nickname = '123456789'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Nickname 半角英数8文字以内で入力してください")
+        expect(@user.errors.full_messages).to include('Nickname 半角英数8文字以内で入力してください')
       end
       it 'ニックネームが全角8文字以上' do
-        @user.nickname = "あいうえおあいうえお"
+        @user.nickname = 'あいうえおあいうえお'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Nickname 半角英数8文字以内で入力してください")
+        expect(@user.errors.full_messages).to include('Nickname 半角英数8文字以内で入力してください')
       end
       it 'ニックネームが記号8文字以上' do
-        @user.nickname = "@@@@@@@@@@"
+        @user.nickname = '@@@@@@@@@@'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Nickname 半角英数8文字以内で入力してください")
+        expect(@user.errors.full_messages).to include('Nickname 半角英数8文字以内で入力してください')
       end
       it 'メールアドレスが未記入' do
-        @user.email = ""
+        @user.email = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
